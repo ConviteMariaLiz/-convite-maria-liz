@@ -52,7 +52,7 @@
             max-height: 90vh;
         }
 
-        /* Indicador de rolagem no canto inferior direito com personagem ao lado e 3 setas empilhadas */
+        /* Indicador de rolagem no canto inferior direito com personagem ao lado e 3 setas empilhadas, compacto */
         .scroll-indicator {
             position: fixed;
             bottom: 20px;
@@ -60,11 +60,11 @@
             opacity: 0.3; /* Mesma opacidade */
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            width: 140px; /* Largura aumentada para 3 setas */
-            height: 80px; /* Altura aumentada */
+            width: 100px; /* Largura reduzida */
+            height: 60px; /* Altura reduzida */
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-around; /* Espaço reduzido entre personagem e setas */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -78,8 +78,8 @@
         }
 
         .character-image {
-            width: 50px;
-            height: 50px;
+            width: 40px; /* Tamanho reduzido */
+            height: 40px; /* Tamanho reduzido */
             border-radius: 10px;
         }
 
@@ -87,15 +87,15 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px; /* Espaço entre setas */
+            gap: 3px; /* Espaço menor entre setas */
         }
 
         .scroll-arrow {
             width: 0;
             height: 0;
-            border-left: 3px solid transparent;
-            border-right: 3px solid transparent;
-            border-top: 6px solid #fff;
+            border-left: 2px solid transparent;
+            border-right: 2px solid transparent;
+            border-top: 5px solid #fff; /* Seta menor */
         }
 
         /* Animações staggered para as 3 setas */
@@ -328,8 +328,8 @@
         </main>
     </div>
 
-    <!-- Indicador de rolagem no canto inferior direito com personagem ao lado e 3 setas empilhadas -->
-    <div class="scroll-indicator" onclick="rolarParaBaixo()">
+    <!-- Indicador de rolagem no canto inferior direito com personagem ao lado e 3 setas empilhadas, compacto -->
+    <div class="scroll-indicator" id="scrollIndicator" onclick="rolarParaBaixo()">
         <img src="https://i.pinimg.com/originals/52/05/ad/5205ad1953cc30b721bb42ee285eba7e.png" alt="Personagem fofo" class="character-image" onerror="this.style.display='none';">
         <div class="scroll-arrows">
             <div class="scroll-arrow"></div>
@@ -371,6 +371,20 @@
         function rolarParaBaixo() {
             window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
         }
+
+        // Função para esconder o indicador quando chegar no final da página
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const indicator = document.getElementById('scrollIndicator');
+
+            if (scrollTop + windowHeight >= documentHeight - 10) { // Margem de 10px para o final
+                indicator.style.display = 'none';
+            } else {
+                indicator.style.display = 'flex';
+            }
+        });
 
         // Função para tocar música e redirecionar
         function tocarMusicaEIrParaLocal() {
