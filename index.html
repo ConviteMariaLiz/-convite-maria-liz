@@ -50,13 +50,19 @@
             box-shadow: var(--sombra);
             overflow-y: auto;
             max-height: 90vh;
-            animation: fadeIn 1s ease-in; /* Animação de entrada */
         }
 
-        /* Animação de fade-in */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Contador regressivo */
+        #contador {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: var(--sombra);
+            color: #fff;
         }
 
         /* Imagens do convite */
@@ -67,7 +73,6 @@
             margin-bottom: 15px;
             border-radius: 10px;
             box-shadow: var(--sombra);
-            animation: fadeIn 1.5s ease-in; /* Fade-in mais lento para imagens */
         }
 
         /* Fallback para imagens que não carregam */
@@ -100,14 +105,12 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            animation: fadeIn 2s ease-in; /* Fade-in para botões */
         }
 
         .botao:hover {
             background-color: var(--cor-botao-hover);
-            transform: translateY(-2px) rotate(1deg); /* Hover com leve rotação */
+            transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-            filter: brightness(1.1); /* Brilho sutil */
         }
 
         .botao:focus {
@@ -134,6 +137,9 @@
             h1 {
                 font-size: 1.4rem;
             }
+            #contador {
+                font-size: 1.2rem; /* Ajusta para mobile */
+            }
         }
     </style>
 </head>
@@ -141,6 +147,8 @@
     <div class="container">
         <header>
             <h1 style="text-align: center; margin-bottom: 20px; font-size: 1.5rem;">Convite Especial</h1>
+            <!-- Contador regressivo -->
+            <div id="contador">Carregando contador...</div>
         </header>
         <main>
             <!-- Primeira imagem do convite -->
@@ -156,11 +164,53 @@
                 ✅ CONFIRMAR PRESENÇA
             </a>
             
-            <!-- Novo botão para o local do evento -->
-            <a href="https://share.google/O8SSLfRoFTqmfCAVP" class="botao" aria-label="Clique para ver o local do evento" target="_blank">
+            <!-- Novo botão para o local do evento com música -->
+            <button class="botao" onclick="tocarMusicaEIrParaLocal()" aria-label="Clique para ver o local do evento com música">
                 📍 LOCAL DO EVENTO
-            </a>
+            </button>
         </main>
     </div>
+
+    <!-- Tag de áudio oculta (substitua 'musica.mp3' pelo nome do seu arquivo) -->
+    <audio id="musica" src="musica.mp3" preload="auto"></audio>
+
+    <script>
+        // Função para o contador regressivo
+        function atualizarContador() {
+            const dataEvento = new Date('2026-03-29T00:00:00'); // Data do evento (29 de março de 2026)
+            const agora = new Date();
+            const diff = dataEvento - agora;
+
+            if (diff > 0) {
+                const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+                document.getElementById('contador').innerText = `Faltam ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos para o aniversário! 🎂`;
+            } else {
+                document.getElementById('contador').innerText = 'O evento já aconteceu! 🎉 Feliz aniversário, Maria Liz!';
+            }
+        }
+
+        // Atualiza o contador a cada segundo
+        setInterval(atualizarContador, 1000);
+        // Chama imediatamente para não esperar 1 segundo
+        atualizarContador();
+
+        // Função para tocar música e redirecionar
+        function tocarMusicaEIrParaLocal() {
+            const audio = document.getElementById('musica');
+            audio.play().then(() => {
+                // Após tocar, redireciona para o link (com atraso de 2 segundos para ouvir a música)
+                setTimeout(() => {
+                    window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
+                }, 2000); // Ajuste o tempo se quiser mais ou menos
+            }).catch(error => {
+                console.log('Autoplay bloqueado:', error);
+                // Se bloqueado, redireciona diretamente
+                window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
+            });
+        }
+    </script>
 </body>
 </html>
