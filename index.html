@@ -52,41 +52,48 @@
             max-height: 90vh;
         }
 
-        /* Indicador de rolagem com imagem personalizada no centro inferior */
+        /* Indicador de rolagem no canto superior direito com personagem ao lado */
         .scroll-indicator {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0.5; /* Discreto */
+            top: 20px;
+            right: 20px;
+            opacity: 0.3; /* Menos visível */
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            width: 60px; /* Largura ajustada para imagem */
-            height: 60px; /* Altura ajustada para imagem */
+            width: 120px; /* Largura para personagem + indicador */
+            height: 60px; /* Altura ajustada */
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             transition: opacity 0.3s ease, transform 0.3s ease;
-            animation: subtleBounce 3s ease-in-out infinite; /* Bounce sutil */
             z-index: 10;
         }
 
         .scroll-indicator:hover {
-            opacity: 0.8;
-            transform: translateX(-50%) scale(1.05);
+            opacity: 0.6; /* Leve aumento no hover */
+            transform: scale(1.05);
         }
 
-        .scroll-image {
-            width: 100%;
-            height: auto;
+        .character-image {
+            width: 50px;
+            height: 50px;
             border-radius: 10px;
+        }
+
+        .scroll-arrow {
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 8px solid #fff;
+            animation: subtleBounce 3s ease-in-out infinite; /* Bounce sutil */
         }
 
         @keyframes subtleBounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-3px); } /* Movimento leve */
+            40% { transform: translateY(-2px); } /* Movimento leve */
             60% { transform: translateY(-1px); }
         }
 
@@ -254,7 +261,7 @@
 <body>
     <div class="container">
         <header>
-            <h1 style="text-align: center; margin-bottom: 20px; font-size: 1.5rem;">Convite Especial</h1>
+            <h1 style="text-align: center; margin-bottom: 20px; font-size: 1.5rem;">🎂 Convite Especial 🎂</h1>
             <!-- Contador regressivo moderno -->
             <div id="contador">
                 <div class="unidade">
@@ -296,9 +303,10 @@
         </main>
     </div>
 
-    <!-- Indicador de rolagem com imagem personalizada no centro inferior -->
+    <!-- Indicador de rolagem no canto superior direito com personagem ao lado -->
     <div class="scroll-indicator" onclick="rolarParaBaixo()">
-        <img src="https://i.pinimg.com/originals/52/05/ad/5205ad1953cc30b721bb42ee285eba7e.png" alt="Indicador para rolar para baixo" class="scroll-image" onerror="this.style.display='none';">
+        <img src="https://i.pinimg.com/originals/52/05/ad/5205ad1953cc30b721bb42ee285eba7e.png" alt="Personagem fofo" class="character-image" onerror="this.style.display='none';">
+        <div class="scroll-arrow"></div>
     </div>
 
     <!-- Tag de áudio oculta (substitua 'musica.mp3' pelo nome do seu arquivo) -->
