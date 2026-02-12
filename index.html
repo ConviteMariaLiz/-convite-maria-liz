@@ -369,14 +369,14 @@
             window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
         }
 
-        // Função para esconder o indicador quando chegar no final da página
+        // Função para esconder o indicador quando chegar no final da página (margem maior para mobile)
         window.addEventListener('scroll', function() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const windowHeight = window.innerHeight;
             const documentHeight = document.documentElement.scrollHeight;
             const indicator = document.getElementById('scrollIndicator');
 
-            if (scrollTop + windowHeight >= documentHeight - 10) { // Margem de 10px para o final
+            if (scrollTop + windowHeight >= documentHeight - 50) { // Margem aumentada para 50px
                 indicator.style.display = 'none';
             } else {
                 indicator.style.display = 'flex';
