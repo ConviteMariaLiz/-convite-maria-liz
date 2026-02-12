@@ -69,7 +69,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             transition: opacity 0.3s ease, transform 0.3s ease;
-            animation: fadePulse 3s ease-in-out infinite; /* Animação sutil */
+            animation: fadePulse 3s ease-in-out infinite;
             z-index: 10;
         }
 
@@ -79,8 +79,12 @@
         }
 
         .scroll-arrow {
-            font-size: 1.5rem;
-            color: #fff;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 10px solid #fff; /* Seta branca para baixo */
+            margin-top: 5px; /* Ajuste para centralizar */
         }
 
         /* Animação de fade-pulse para discrição */
@@ -211,7 +215,7 @@
                 max-height: 95vh;
             }
             .scroll-indicator {
-                display: flex; /* Mostra em mobile */
+                display: flex;
             }
             .convite-img {
                 width: 100%;
@@ -297,7 +301,7 @@
 
     <!-- Indicador de rolagem discreto -->
     <div class="scroll-indicator" onclick="rolarParaBaixo()">
-        <div class="scroll-arrow">⬇️</div>
+        <div class="scroll-arrow"></div>
     </div>
 
     <!-- Tag de áudio oculta (substitua 'musica.mp3' pelo nome do seu arquivo) -->
