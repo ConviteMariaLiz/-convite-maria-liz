@@ -119,6 +119,34 @@
             60% { transform: translateY(-1px); }
         }
 
+        /* Estilos para balões */
+        .balloon {
+            position: fixed;
+            bottom: -50px; /* Começa do fundo */
+            width: 20px;
+            height: 30px;
+            background: radial-gradient(circle at 30% 30%, #ff69b4, #ffb6c1); /* Gradiente rosa */
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; /* Forma de balão */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            animation: floatUp 5s linear infinite;
+            z-index: 5;
+        }
+
+        .balloon:nth-child(odd) {
+            background: radial-gradient(circle at 30% 30%, #87ceeb, #add8e6); /* Azul */
+        }
+
+        .balloon:nth-child(3n) {
+            background: radial-gradient(circle at 30% 30%, #ffff00, #ffed4e); /* Amarelo */
+        }
+
+        @keyframes floatUp {
+            to {
+                transform: translateY(-120vh) rotate(10deg);
+                opacity: 0;
+            }
+        }
+
         /* Contador regressivo moderno */
         #contador {
             display: flex;
@@ -364,9 +392,23 @@
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
-        // Função para rolar suavemente para baixo
+        // Função para rolar suavemente para baixo e disparar balões
         function rolarParaBaixo() {
             window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+            dispararBaloes(); // Dispara balões ao clicar
+        }
+
+        // Função para disparar balões
+        function dispararBaloes() {
+            for (let i = 0; i < 20; i++) { // 20 balões
+                const balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                balloon.style.left = Math.random() * 100 + 'vw'; // Posição horizontal aleatória
+                balloon.style.animationDelay = Math.random() * 2 + 's'; // Atraso aleatório
+                balloon.style.animationDuration = (4 + Math.random() * 2) + 's'; // Duração variável
+                document.body.appendChild(balloon);
+                setTimeout(() => balloon.remove(), 6000); // Remove após 6s
+            }
         }
 
         // Função para esconder o indicador quando o botão "LOCAL DO EVENTO" estiver visível (usando Intersection Observer)
@@ -389,16 +431,4 @@
 
         // Função para tocar música e redirecionar
         function tocarMusicaEIrParaLocal() {
-            const audio = document.getElementById('musica');
-            audio.play().then(() => {
-                setTimeout(() => {
-                    window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
-                }, 2000);
-            }).catch(error => {
-                console.log('Autoplay bloqueado:', error);
-                window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
-            });
-        }
-    </script>
-</body>
-</html>
+            const audio
