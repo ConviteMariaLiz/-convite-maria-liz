@@ -52,18 +52,15 @@
         /* Imagens do convite */
         .convite-img {
             width: 100%;
-            height: auto;
+            max-height: 400px; /* Limita a altura para evitar imagens muito grandes, mas mostra tudo */
             display: block;
             margin-bottom: 15px;
             border-radius: 10px;
             box-shadow: var(--sombra);
-            object-fit: cover; /* Garante que a imagem se ajuste sem distorcer */
+            object-fit: contain; /* Mostra a imagem inteira sem cortar, mas pode deixar espaços */
         }
 
         /* Fallback para imagens que não carregam */
-        .convite-img[alt]:not([src]) {
-            display: none; /* Esconde se não houver src */
-        }
         .fallback {
             width: 100%;
             padding: 20px;
@@ -73,6 +70,7 @@
             margin-bottom: 15px;
             color: #fff;
             font-weight: bold;
+            display: none; /* Escondido por padrão */
         }
 
         /* Botão de confirmação */
@@ -116,6 +114,9 @@
                 font-size: 1rem;
                 padding: 15px;
             }
+            .convite-img {
+                max-height: 300px; /* Ajusta para telas menores */
+            }
         }
     </style>
 </head>
@@ -125,13 +126,15 @@
             <h1 style="text-align: center; margin-bottom: 20px; font-size: 1.5rem;">Convite Especial</h1>
         </header>
         <main>
-            <!-- Substitua os src pelas suas imagens reais ou URLs -->
+            <!-- Primeira imagem do convite -->
             <img src="convite.png" alt="Parte superior do convite para o aniversário da Maria Liz" class="convite-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="fallback" style="display: none;">Imagem não encontrada. Verifique o caminho do arquivo.</div>
+            <div class="fallback">Imagem não encontrada. Verifique o caminho do arquivo.</div>
             
+            <!-- Segunda imagem do convite -->
             <img src="convite2.png" alt="Parte inferior do convite para o aniversário da Maria Liz" class="convite-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="fallback" style="display: none;">Imagem não encontrada. Verifique o caminho do arquivo.</div>
+            <div class="fallback">Imagem não encontrada. Verifique o caminho do arquivo.</div>
             
+            <!-- Botão de confirmação -->
             <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao" aria-label="Clique para confirmar presença no WhatsApp">
                 ✅ CONFIRMAR PRESENÇA
             </a>
