@@ -363,8 +363,11 @@
         </div>
     </div>
 
-    <!-- Tag de áudio oculta (substitua 'musica.mp3' pelo nome do seu arquivo) -->
-    <audio id="musica" src="musica.mp3" preload="auto"></audio>
+    <!-- Iframe oculto para o player do YouTube (substitua LINK_DO_VIDEO_YOUTUBE pelo ID do vídeo) -->
+    <div id="youtube-player" style="display: none;"></div>
+
+    <!-- API do YouTube -->
+    <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
         // Função para o contador regressivo
@@ -422,13 +425,4 @@
                 }
             });
         }, {
-            threshold: 0.1 // 10% do elemento visível
-        });
-
-        // Observa o botão "LOCAL DO EVENTO"
-        const localButton = document.getElementById('localButton');
-        observer.observe(localButton);
-
-        // Função para tocar música e redirecionar
-        function tocarMusicaEIrParaLocal() {
-            const audio
+            threshold:
