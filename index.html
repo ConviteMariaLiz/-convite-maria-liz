@@ -51,13 +51,14 @@
 
         /* Imagens do convite */
         .convite-img {
-            width: 100%;
-            max-height: 400px; /* Limita a altura para evitar imagens muito grandes, mas mostra tudo */
+            width: auto; /* Permite largura natural */
+            max-width: 100%; /* Limita à largura do container */
+            max-height: 700px; /* Aumentado para acomodar imagens verticais */
             display: block;
             margin-bottom: 15px;
             border-radius: 10px;
             box-shadow: var(--sombra);
-            object-fit: contain; /* Mostra a imagem inteira sem cortar, mas pode deixar espaços */
+            object-fit: contain; /* Mostra a imagem inteira sem cortar */
         }
 
         /* Fallback para imagens que não carregam */
@@ -115,7 +116,7 @@
                 padding: 15px;
             }
             .convite-img {
-                max-height: 300px; /* Ajusta para telas menores */
+                max-height: 600px; /* Ajustado para telas menores */
             }
         }
     </style>
