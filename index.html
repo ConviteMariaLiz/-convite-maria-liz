@@ -119,6 +119,33 @@
             60% { transform: translateY(-1px); }
         }
 
+        /* Estilos para confetes */
+        .confetti {
+            position: fixed;
+            top: -10px;
+            width: 10px;
+            height: 10px;
+            background-color: #ff69b4; /* Rosa */
+            border-radius: 50%;
+            animation: fall 3s linear infinite;
+            z-index: 5;
+        }
+
+        .confetti:nth-child(odd) {
+            background-color: #ffb6c1; /* Rosa claro */
+        }
+
+        .confetti:nth-child(3n) {
+            background-color: #fff; /* Branco */
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         /* Contador regressivo moderno */
         #contador {
             display: flex;
@@ -322,6 +349,11 @@
             <button class="botao" id="localButton" onclick="tocarMusicaEIrParaLocal()" aria-label="Clique para ver o local do evento com música">
                 📍 LOCAL DO EVENTO
             </button>
+            
+            <!-- Novo botão para adicionar ao calendário -->
+            <button class="botao" onclick="adicionarAoCalendario()" aria-label="Clique para adicionar o evento ao seu calendário">
+                📅 ADICIONAR AO CALENDÁRIO
+            </button>
         </main>
     </div>
 
@@ -364,41 +396,43 @@
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
-        // Função para rolar suavemente para baixo
+        // Função para rolar suavemente para baixo e disparar confetes
         function rolarParaBaixo() {
             window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+            dispararConfetes(); // Dispara confetes ao clicar
         }
 
-        // Função para esconder o indicador quando o botão "LOCAL DO EVENTO" estiver visível (usando Intersection Observer)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const indicator = document.getElementById('scrollIndicator');
-                if (entry.isIntersecting) {
-                    indicator.style.display = 'none'; // Esconde quando o botão entra na viewport
-                } else {
-                    indicator.style.display = 'flex'; // Mostra quando sai
-                }
-            });
-        }, {
-            threshold: 0.1 // 10% do elemento visível
-        });
-
-        // Observa o botão "LOCAL DO EVENTO"
-        const localButton = document.getElementById('localButton');
-        observer.observe(localButton);
-
-        // Função para tocar música e redirecionar
-        function tocarMusicaEIrParaLocal() {
-            const audio = document.getElementById('musica');
-            audio.play().then(() => {
-                setTimeout(() => {
-                    window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
-                }, 2000);
-            }).catch(error => {
-                console.log('Autoplay bloqueado:', error);
-                window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
-            });
+        // Função para disparar confetes
+        function dispararConfetes() {
+            for (let i = 0; i < 50; i++) { // 50 confetes
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw'; // Posição horizontal aleatória
+                confetti.style.animationDelay = Math.random() * 3 + 's'; // Atraso aleatório
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000); // Remove após 3s
+            }
         }
-    </script>
-</body>
-</html>
+
+        // Função para adicionar ao calendário (gera link iCal)
+        function adicionarAoCalendario() {
+            const dataEvento = '20260329T000000'; // Formato YYYYMMDDTHHMMSS
+            const titulo = 'Aniversário da Maria Liz';
+            const descricao = 'Venha celebrar o aniversário da Maria Liz! Confirme presença via WhatsApp.';
+            const local = 'Local do evento: https://share.google/O8SSLfRoFTqmfCAVP';
+            const icalData = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART:${dataEvento}
+DTEND:${dataEvento}
+SUMMARY:${titulo}
+DESCRIPTION:${descricao}
+LOCATION:${local}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icalData], { type: 'text/calendar' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'aniversario-maria-liz.
