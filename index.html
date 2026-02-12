@@ -52,29 +52,30 @@
             max-height: 90vh;
         }
 
-        /* Indicador de rolagem */
+        /* Indicador de rolagem moderno e discreto */
         .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.7;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            margin-bottom: 20px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            box-shadow: var(--sombra);
-            animation: bounce 2s infinite; /* Animação de bounce */
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             cursor: pointer;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            animation: fadePulse 3s ease-in-out infinite; /* Animação sutil */
+            z-index: 10;
         }
 
         .scroll-indicator:hover {
-            transform: scale(1.1);
-        }
-
-        .scroll-text {
-            font-size: 1rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #fff;
+            opacity: 1;
+            transform: translateX(-50%) scale(1.1);
         }
 
         .scroll-arrow {
@@ -82,11 +83,10 @@
             color: #fff;
         }
 
-        /* Animação de bounce para a seta */
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+        /* Animação de fade-pulse para discrição */
+        @keyframes fadePulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
         }
 
         /* Contador regressivo moderno */
@@ -211,7 +211,7 @@
                 max-height: 95vh;
             }
             .scroll-indicator {
-                display: block; /* Mostra em mobile */
+                display: flex; /* Mostra em mobile */
             }
             .convite-img {
                 width: 100%;
@@ -242,10 +242,10 @@
             }
         }
 
-        /* Esconde o indicador em telas grandes se não houver necessidade */
+        /* Esconde o indicador em telas grandes */
         @media (min-width: 601px) {
             .scroll-indicator {
-                display: none; /* Opcional: esconde em desktop se o conteúdo couber */
+                display: none;
             }
         }
     </style>
@@ -273,11 +273,6 @@
                     <div class="label">Seg</div>
                 </div>
             </div>
-            <!-- Indicador de rolagem -->
-            <div class="scroll-indicator" onclick="rolarParaBaixo()">
-                <div class="scroll-text">Role para baixo para confirmar presença</div>
-                <div class="scroll-arrow">⬇️</div>
-            </div>
         </header>
         <main>
             <!-- Primeira imagem do convite -->
@@ -298,6 +293,11 @@
                 📍 LOCAL DO EVENTO
             </button>
         </main>
+    </div>
+
+    <!-- Indicador de rolagem discreto -->
+    <div class="scroll-indicator" onclick="rolarParaBaixo()">
+        <div class="scroll-arrow">⬇️</div>
     </div>
 
     <!-- Tag de áudio oculta (substitua 'musica.mp3' pelo nome do seu arquivo) -->
@@ -329,7 +329,7 @@
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
-        // Função para rolar suavemente para baixo (opcional, ao clicar na seta)
+        // Função para rolar suavemente para baixo
         function rolarParaBaixo() {
             window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
         }
