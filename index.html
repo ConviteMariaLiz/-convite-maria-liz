@@ -303,6 +303,10 @@
                     <div class="label">Seg</div>
                 </div>
             </div>
+            <!-- Novo botão para ativar música no header -->
+            <button class="botao" onclick="ativarMusica()" aria-label="Clique para ativar a música">
+                🎵 ATIVAR MÚSICA
+            </button>
         </header>
         <main>
             <!-- Primeira imagem do convite -->
@@ -318,8 +322,8 @@
                 ✅ CONFIRMAR PRESENÇA
             </a>
             
-            <!-- Novo botão para o local do evento com música -->
-            <button class="botao" id="localButton" onclick="tocarMusicaEIrParaLocal()" aria-label="Clique para ver o local do evento com música">
+            <!-- Novo botão para o local do evento -->
+            <button class="botao" id="localButton" onclick="irParaLocal()" aria-label="Clique para ver o local do evento">
                 📍 LOCAL DO EVENTO
             </button>
         </main>
@@ -418,14 +422,19 @@
             // Player pronto, mas não toca automaticamente
         }
 
-        // Função para tocar música e redirecionar
-        function tocarMusicaEIrParaLocal() {
+        // Função para ativar a música
+        function ativarMusica() {
             if (player) {
                 player.playVideo(); // Toca o vídeo (apenas áudio)
+                alert('Música ativada! A trilha sonora está tocando em fundo.');
+            } else {
+                alert('Player ainda não carregou. Tente novamente.');
             }
-            setTimeout(() => {
-                window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
-            }, 2000);
+        }
+
+        // Função para ir ao local do evento
+        function irParaLocal() {
+            window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
         }
     </script>
 </body>
