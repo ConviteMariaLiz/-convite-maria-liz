@@ -52,14 +52,13 @@
 
         /* Imagens do convite */
         .convite-img {
-            width: auto;
-            max-width: 100%;
-            max-height: 700px; /* Padrão para desktop */
+            width: 100%; /* Ajusta à largura do container */
+            height: auto; /* Mantém proporção original sem cortes */
             display: block;
             margin-bottom: 15px;
             border-radius: 10px;
             box-shadow: var(--sombra);
-            object-fit: contain;
+            /* Removido object-fit para evitar cortes */
         }
 
         /* Fallback para imagens que não carregam */
@@ -108,12 +107,12 @@
         /* Responsividade para telas menores (mobile-first) */
         @media (max-width: 600px) {
             .container {
-                max-width: 95%; /* Ocupa mais espaço em mobile */
-                padding: 15px;
+                max-width: 98%; /* Ocupa quase toda a largura em mobile */
+                padding: 10px;
             }
             .convite-img {
-                max-height: 80vh; /* 80% da altura da tela para imagens verticais */
-                width: 100%; /* Força largura total para melhor ajuste */
+                width: 100%; /* Garante ajuste total */
+                height: auto; /* Proporção intacta */
             }
             .botao {
                 width: 95%;
@@ -121,7 +120,7 @@
                 padding: 16px;
             }
             h1 {
-                font-size: 1.4rem; /* Ajusta título para mobile */
+                font-size: 1.4rem;
             }
         }
     </style>
