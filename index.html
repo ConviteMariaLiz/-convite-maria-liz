@@ -203,15 +203,17 @@
             display: none;
         }
 
-        /* Botão de confirmação com imagem do boneco */
-        .botao-confirmacao {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Botão de confirmação com imagem */
+        .botao-confirmar {
+            display: block;
             width: 85%;
             margin: 25px auto;
-            padding: 18px;
+            padding: 18px 18px 18px 70px; /* Padding esquerdo para espaço da imagem */
             background-color: var(--cor-botao);
+            background-image: url('https://i.pinimg.com/originals/11/6b/b1/116bb116b2ce763a809594a81fc3d841.gif'); /* Imagem GIF para confirmar presença */
+            background-size: 50px 50px; /* Tamanho da imagem */
+            background-position: 10px center; /* Posição à esquerda */
+            background-repeat: no-repeat;
             color: white;
             text-align: center;
             text-decoration: none;
@@ -224,42 +226,31 @@
             cursor: pointer;
         }
 
-        .botao-confirmacao::before {
-            content: '';
-            background-image: url('https://i.pinimg.com/1200x/33/5e/4c/335e4cc8631c34f17ade3b01726b92bf.jpg');
-            background-size: cover;
-            background-position: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-            border: 2px solid #fff;
-        }
-
-        .botao-confirmacao:hover {
+        .botao-confirmar:hover {
             background-color: var(--cor-botao-hover);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .botao-confirmacao:focus {
+        .botao-confirmar:focus {
             outline: 2px solid #fff;
             outline-offset: 2px;
         }
 
-        /* Botão do local com GIF de fundo */
+        /* Botão do local do evento com imagem */
         .botao-local {
             display: block;
             width: 85%;
             margin: 25px auto;
-            padding: 18px;
+            padding: 18px 18px 18px 70px; /* Padding esquerdo para espaço da imagem */
             background-color: var(--cor-botao);
-            background-image: url('https://i.pinimg.com/originals/6e/60/8f/6e608f505913f335e9bc6c8511b4e36f.gif');
-            background-size: 40px 40px;
+            background-image: url('https://i.pinimg.com/originals/6e/60/8f/6e608f505913f335e9bc6c8511b4e36f.gif'); /* Imagem GIF para local do evento */
+            background-size: 50px 50px; /* Tamanho da imagem */
+            background-position: 10px center; /* Posição à esquerda */
             background-repeat: no-repeat;
-            background-position: center left 10px;
             color: white;
             text-align: center;
+            text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
             font-size: 1.2rem;
@@ -267,7 +258,6 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            padding-left: 60px; /* Espaço para a imagem */
         }
 
         .botao-local:hover {
@@ -299,18 +289,10 @@
             .convite-img:hover {
                 transform: scale(1.05) rotate(2deg);
             }
-            .botao-confirmacao, .botao-local {
+            .botao-confirmar, .botao-local {
                 width: 95%;
                 font-size: 1.1rem;
-                padding: 16px;
-            }
-            .botao-confirmacao::before {
-                width: 40px;
-                height: 40px;
-            }
-            .botao-local {
-                background-size: 30px 30px;
-                padding-left: 50px;
+                padding: 16px 16px 16px 70px; /* Ajuste para mobile */
             }
             h1 {
                 font-size: 1.4rem;
@@ -369,12 +351,12 @@
             <img src="convite2.png" alt="Parte inferior do convite para o aniversário da Maria Liz" class="convite-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <div class="fallback">Imagem não encontrada. Verifique o caminho do arquivo.</div>
             
-            <!-- Botão de confirmação com imagem do boneco -->
-            <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao-confirmacao" aria-label="Clique para confirmar presença no WhatsApp">
+            <!-- Botão de confirmação com imagem -->
+            <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao-confirmar" aria-label="Clique para confirmar presença no WhatsApp">
                 ✅ CONFIRMAR PRESENÇA
             </a>
             
-            <!-- Botão do local com GIF de fundo -->
+            <!-- Novo botão para o local do evento com imagem -->
             <button class="botao-local" id="localButton" onclick="irParaLocal()" aria-label="Clique para ver o local do evento">
                 📍 LOCAL DO EVENTO
             </button>
@@ -443,4 +425,7 @@
         // Função para ir ao local do evento
         function irParaLocal() {
             window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
-       
+        }
+    </script>
+</body>
+</html>
