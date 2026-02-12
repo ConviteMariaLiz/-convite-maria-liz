@@ -52,17 +52,46 @@
             max-height: 90vh;
         }
 
-        /* Contador regressivo */
+        /* Contador regressivo moderno */
         #contador {
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
             margin-bottom: 20px;
-            padding: 10px;
+            padding: 15px;
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: var(--sombra);
-            color: #fff;
+        }
+
+        .unidade {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+            border-radius: 10px;
+            padding: 10px;
+            min-width: 60px;
+            box-shadow: var(--sombra);
+            color: #333;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .unidade:hover {
+            transform: scale(1.05);
+        }
+
+        .numero {
+            font-size: 1.8rem;
+            font-family: 'Courier New', monospace; /* Estilo digital */
+            transition: all 0.5s ease; /* Animação suave para mudanças */
+        }
+
+        .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-top: 5px;
         }
 
         /* Imagens do convite com animações */
@@ -73,17 +102,15 @@
             margin-bottom: 15px;
             border-radius: 10px;
             box-shadow: var(--sombra);
-            transition: all 0.3s ease; /* Transição suave para hover */
-            animation: fadeIn 1.5s ease-in, balanco 3s ease-in-out infinite; /* Fade-in e balanço contínuo */
+            transition: all 0.3s ease;
+            animation: fadeIn 1.5s ease-in, balanco 3s ease-in-out infinite;
         }
 
-        /* Animação de fade-in */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Animação de balanço contínuo */
         @keyframes balanco {
             0%, 100% { transform: rotate(0deg); }
             25% { transform: rotate(1deg); }
@@ -91,9 +118,8 @@
             75% { transform: rotate(0.5deg); }
         }
 
-        /* Hover para interação */
         .convite-img:hover {
-            transform: scale(1.05) rotate(2deg); /* Aumenta e gira levemente */
+            transform: scale(1.05) rotate(2deg);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
         }
 
@@ -150,10 +176,10 @@
             .convite-img {
                 width: 100%;
                 height: auto;
-                animation: fadeIn 1.5s ease-in, balanco 3s ease-in-out infinite; /* Mantém animações em mobile */
+                animation: fadeIn 1.5s ease-in, balanco 3s ease-in-out infinite;
             }
             .convite-img:hover {
-                transform: scale(1.05) rotate(2deg); /* Hover funciona como toque em mobile */
+                transform: scale(1.05) rotate(2deg);
             }
             .botao {
                 width: 95%;
@@ -164,7 +190,15 @@
                 font-size: 1.4rem;
             }
             #contador {
-                font-size: 1.2rem;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            .unidade {
+                min-width: 50px;
+                padding: 8px;
+            }
+            .numero {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -173,8 +207,25 @@
     <div class="container">
         <header>
             <h1 style="text-align: center; margin-bottom: 20px; font-size: 1.5rem;">Convite Especial</h1>
-            <!-- Contador regressivo -->
-            <div id="contador">Carregando contador...</div>
+            <!-- Contador regressivo moderno -->
+            <div id="contador">
+                <div class="unidade">
+                    <span id="dias" class="numero">0</span>
+                    <div class="label">Dias</div>
+                </div>
+                <div class="unidade">
+                    <span id="horas" class="numero">0</span>
+                    <div class="label">Horas</div>
+                </div>
+                <div class="unidade">
+                    <span id="minutos" class="numero">0</span>
+                    <div class="label">Min</div>
+                </div>
+                <div class="unidade">
+                    <span id="segundos" class="numero">0</span>
+                    <div class="label">Seg</div>
+                </div>
+            </div>
         </header>
         <main>
             <!-- Primeira imagem do convite -->
@@ -212,9 +263,13 @@
                 const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const segundos = Math.floor((diff % (1000 * 60)) / 1000);
-                document.getElementById('contador').innerText = `Faltam ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos para o aniversário! 🎂`;
+
+                document.getElementById('dias').innerText = dias;
+                document.getElementById('horas').innerText = horas;
+                document.getElementById('minutos').innerText = minutos;
+                document.getElementById('segundos').innerText = segundos;
             } else {
-                document.getElementById('contador').innerText = 'O evento já aconteceu! 🎉 Feliz aniversário, Maria Liz!';
+                document.getElementById('contador').innerHTML = '<div style="text-align: center; color: #fff;">O evento já aconteceu! 🎉 Feliz aniversário, Maria Liz!</div>';
             }
         }
 
