@@ -48,17 +48,19 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             box-shadow: var(--sombra);
+            overflow-y: auto; /* Permite rolagem vertical para imagens longas */
+            max-height: 90vh; /* Limita altura do container para caber na tela, mas permite rolagem interna */
         }
 
         /* Imagens do convite */
         .convite-img {
             width: 100%; /* Ajusta à largura do container */
-            height: auto; /* Mantém proporção original sem cortes */
+            height: auto; /* Mantém proporção original sem cortes ou limites */
             display: block;
             margin-bottom: 15px;
             border-radius: 10px;
             box-shadow: var(--sombra);
-            /* Removido object-fit para evitar cortes */
+            /* Sem object-fit ou max-height para evitar cortes */
         }
 
         /* Fallback para imagens que não carregam */
@@ -109,6 +111,7 @@
             .container {
                 max-width: 98%; /* Ocupa quase toda a largura em mobile */
                 padding: 10px;
+                max-height: 95vh; /* Ajusta para telas menores */
             }
             .convite-img {
                 width: 100%; /* Garante ajuste total */
