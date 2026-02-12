@@ -319,7 +319,7 @@
             </a>
             
             <!-- Novo botão para o local do evento com música -->
-            <button class="botao" onclick="tocarMusicaEIrParaLocal()" aria-label="Clique para ver o local do evento com música">
+            <button class="botao" id="localButton" onclick="tocarMusicaEIrParaLocal()" aria-label="Clique para ver o local do evento com música">
                 📍 LOCAL DO EVENTO
             </button>
         </main>
@@ -369,19 +369,23 @@
             window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
         }
 
-        // Função para esconder o indicador quando chegar no final da página (margem maior para mobile)
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const indicator = document.getElementById('scrollIndicator');
-
-            if (scrollTop + windowHeight >= documentHeight - 50) { // Margem aumentada para 50px
-                indicator.style.display = 'none';
-            } else {
-                indicator.style.display = 'flex';
-            }
+        // Função para esconder o indicador quando o botão "LOCAL DO EVENTO" estiver visível (usando Intersection Observer)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const indicator = document.getElementById('scrollIndicator');
+                if (entry.isIntersecting) {
+                    indicator.style.display = 'none'; // Esconde quando o botão entra na viewport
+                } else {
+                    indicator.style.display = 'flex'; // Mostra quando sai
+                }
+            });
+        }, {
+            threshold: 0.1 // 10% do elemento visível
         });
+
+        // Observa o botão "LOCAL DO EVENTO"
+        const localButton = document.getElementById('localButton');
+        observer.observe(localButton);
 
         // Função para tocar música e redirecionar
         function tocarMusicaEIrParaLocal() {
