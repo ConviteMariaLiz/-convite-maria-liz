@@ -422,20 +422,18 @@
             // Player pronto, mas não toca automaticamente
         }
 
-        // Função para ativar a música
-        function ativarMusica() {
-            if (player) {
+        // Função para ativar a música com retry
+        function ativarMusica(retryCount = 0) {
+            if (player && player.playVideo) {
                 player.playVideo(); // Toca o vídeo (apenas áudio)
                 alert('Música ativada! A trilha sonora está tocando em fundo.');
+            } else if (retryCount < 3) {
+                // Tenta novamente em 1 segundo, até 3 vezes
+                setTimeout(() => ativarMusica(retryCount + 1), 1000);
             } else {
-                alert('Player ainda não carregou. Tente novamente.');
+                alert('Não foi possível carregar a música. Verifique sua conexão e tente novamente.');
             }
         }
 
         // Função para ir ao local do evento
-        function irParaLocal() {
-            window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
-        }
-    </script>
-</body>
-</html>
+        function
