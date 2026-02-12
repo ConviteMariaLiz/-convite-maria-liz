@@ -119,33 +119,6 @@
             60% { transform: translateY(-1px); }
         }
 
-        /* Estilos para confetes */
-        .confetti {
-            position: fixed;
-            top: -10px;
-            width: 10px;
-            height: 10px;
-            background-color: #ff69b4; /* Rosa */
-            border-radius: 50%;
-            animation: fall 3s linear infinite;
-            z-index: 5;
-        }
-
-        .confetti:nth-child(odd) {
-            background-color: #ffb6c1; /* Rosa claro */
-        }
-
-        .confetti:nth-child(3n) {
-            background-color: #fff; /* Branco */
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
         /* Contador regressivo moderno */
         #contador {
             display: flex;
@@ -379,7 +352,7 @@
             <div class="fallback">Imagem não encontrada. Verifique o caminho do arquivo.</div>
             
             <!-- Botão de confirmação com imagem como background -->
-            <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao-confirmar" aria-label="Clique para confirmar presença no WhatsApp" onclick="dispararConfetes()">
+            <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao-confirmar" aria-label="Clique para confirmar presença no WhatsApp">
                 ✅ CONFIRMAR PRESENÇA
             </a>
             
@@ -442,4 +415,17 @@
                 }
             });
         }, {
-            threshold: 0.
+            threshold: 0.1 // 10% do elemento visível
+        });
+
+        // Observa o botão "LOCAL DO EVENTO"
+        const localButton = document.getElementById('localButton');
+        observer.observe(localButton);
+
+        // Função para ir ao local do evento
+        function irParaLocal() {
+            window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
+        }
+    </script>
+</body>
+</html>
