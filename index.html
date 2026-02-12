@@ -33,6 +33,7 @@
             justify-content: center;
             align-items: center;
             color: #fff;
+            overflow-x: hidden; /* Evita rolagem horizontal */
         }
 
         /* Container principal */
@@ -51,14 +52,14 @@
 
         /* Imagens do convite */
         .convite-img {
-            width: auto; /* Permite largura natural */
-            max-width: 100%; /* Limita à largura do container */
-            max-height: 700px; /* Aumentado para acomodar imagens verticais */
+            width: auto;
+            max-width: 100%;
+            max-height: 700px; /* Padrão para desktop */
             display: block;
             margin-bottom: 15px;
             border-radius: 10px;
             box-shadow: var(--sombra);
-            object-fit: contain; /* Mostra a imagem inteira sem cortar */
+            object-fit: contain;
         }
 
         /* Fallback para imagens que não carregam */
@@ -71,7 +72,7 @@
             margin-bottom: 15px;
             color: #fff;
             font-weight: bold;
-            display: none; /* Escondido por padrão */
+            display: none;
         }
 
         /* Botão de confirmação */
@@ -88,14 +89,14 @@
             border-radius: 50px;
             font-size: 1.2rem;
             box-shadow: var(--sombra);
-            transition: all 0.3s ease; /* Transição suave */
+            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
         }
 
         .botao:hover {
             background-color: var(--cor-botao-hover);
-            transform: translateY(-2px); /* Efeito de elevação */
+            transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
         }
 
@@ -104,19 +105,23 @@
             outline-offset: 2px;
         }
 
-        /* Responsividade para telas menores */
+        /* Responsividade para telas menores (mobile-first) */
         @media (max-width: 600px) {
             .container {
-                max-width: 90%;
-                padding: 15px;
-            }
-            .botao {
-                width: 90%;
-                font-size: 1rem;
+                max-width: 95%; /* Ocupa mais espaço em mobile */
                 padding: 15px;
             }
             .convite-img {
-                max-height: 600px; /* Ajustado para telas menores */
+                max-height: 80vh; /* 80% da altura da tela para imagens verticais */
+                width: 100%; /* Força largura total para melhor ajuste */
+            }
+            .botao {
+                width: 95%;
+                font-size: 1.1rem;
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.4rem; /* Ajusta título para mobile */
             }
         }
     </style>
