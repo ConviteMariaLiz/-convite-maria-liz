@@ -52,56 +52,41 @@
             max-height: 90vh;
         }
 
-        /* Indicador de rolagem discreto no centro inferior */
+        /* Indicador de rolagem com imagem personalizada no centro inferior */
         .scroll-indicator {
             position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            opacity: 0.5; /* Mais discreto */
+            opacity: 0.5; /* Discreto */
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            width: 40px; /* Menor largura */
-            height: 80px; /* Menor altura */
+            border-radius: 15px;
+            width: 60px; /* Largura ajustada para imagem */
+            height: 60px; /* Altura ajustada para imagem */
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: space-around;
+            justify-content: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             transition: opacity 0.3s ease, transform 0.3s ease;
+            animation: subtleBounce 3s ease-in-out infinite; /* Bounce sutil */
             z-index: 10;
         }
 
         .scroll-indicator:hover {
-            opacity: 0.8; /* Leve aumento no hover */
+            opacity: 0.8;
             transform: translateX(-50%) scale(1.05);
         }
 
-        .scroll-arrow {
-            width: 0;
-            height: 0;
-            border-left: 3px solid transparent;
-            border-right: 3px solid transparent;
-            border-top: 6px solid #fff; /* Seta menor */
-        }
-
-        /* Animações staggered sutis para as 3 setas */
-        .scroll-arrow:nth-child(1) {
-            animation: subtleBounce 3s ease-in-out infinite;
-        }
-
-        .scroll-arrow:nth-child(2) {
-            animation: subtleBounce 3s ease-in-out infinite 0.7s; /* Atraso maior para discrição */
-        }
-
-        .scroll-arrow:nth-child(3) {
-            animation: subtleBounce 3s ease-in-out infinite 1.4s; /* Atraso ainda maior */
+        .scroll-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
         }
 
         @keyframes subtleBounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-2px); } /* Movimento menor */
+            40% { transform: translateY(-3px); } /* Movimento leve */
             60% { transform: translateY(-1px); }
         }
 
@@ -269,7 +254,7 @@
 <body>
     <div class="container">
         <header>
-            <h1 style="text-align: center; margin-bottom: 20px; font-size: 1.5rem;">Venha celebrar os 3 anos da Maria Liz!</h1>
+            <h1 style="text-align: center; margin-bottom: 20px; font-size: 1.5rem;">Convite Especial</h1>
             <!-- Contador regressivo moderno -->
             <div id="contador">
                 <div class="unidade">
@@ -311,11 +296,9 @@
         </main>
     </div>
 
-    <!-- Indicador de rolagem discreto no centro inferior -->
+    <!-- Indicador de rolagem com imagem personalizada no centro inferior -->
     <div class="scroll-indicator" onclick="rolarParaBaixo()">
-        <div class="scroll-arrow"></div>
-        <div class="scroll-arrow"></div>
-        <div class="scroll-arrow"></div>
+        <img src="https://static.wikia.nocookie.net/pinkfong/images/3/3a/%EC%95%84%EA%B8%B0%EC%83%81%EC%96%B4%EB%9A%9C%EB%A3%A8%EB%A3%A8%EB%9A%9C%EB%A3%A8-02.png/revision/latest/scale-to-width-down/200?cb=20230211071137" alt="Indicador para rolar para baixo" class="scroll-image" onerror="this.style.display='none';">
     </div>
 
     <!-- Tag de áudio oculta (substitua 'musica.mp3' pelo nome do seu arquivo) -->
