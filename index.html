@@ -33,7 +33,7 @@
             justify-content: center;
             align-items: center;
             color: #fff;
-            overflow-x: hidden; /* Evita rolagem horizontal */
+            overflow-x: hidden;
         }
 
         /* Container principal */
@@ -48,19 +48,26 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             box-shadow: var(--sombra);
-            overflow-y: auto; /* Permite rolagem vertical para imagens longas */
-            max-height: 90vh; /* Limita altura do container para caber na tela, mas permite rolagem interna */
+            overflow-y: auto;
+            max-height: 90vh;
+            animation: fadeIn 1s ease-in; /* Animação de entrada */
+        }
+
+        /* Animação de fade-in */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Imagens do convite */
         .convite-img {
-            width: 100%; /* Ajusta à largura do container */
-            height: auto; /* Mantém proporção original sem cortes ou limites */
+            width: 100%;
+            height: auto;
             display: block;
             margin-bottom: 15px;
             border-radius: 10px;
             box-shadow: var(--sombra);
-            /* Sem object-fit ou max-height para evitar cortes */
+            animation: fadeIn 1.5s ease-in; /* Fade-in mais lento para imagens */
         }
 
         /* Fallback para imagens que não carregam */
@@ -93,12 +100,14 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            animation: fadeIn 2s ease-in; /* Fade-in para botões */
         }
 
         .botao:hover {
             background-color: var(--cor-botao-hover);
-            transform: translateY(-2px);
+            transform: translateY(-2px) rotate(1deg); /* Hover com leve rotação */
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            filter: brightness(1.1); /* Brilho sutil */
         }
 
         .botao:focus {
@@ -109,13 +118,13 @@
         /* Responsividade para telas menores (mobile-first) */
         @media (max-width: 600px) {
             .container {
-                max-width: 98%; /* Ocupa quase toda a largura em mobile */
+                max-width: 98%;
                 padding: 10px;
-                max-height: 95vh; /* Ajusta para telas menores */
+                max-height: 95vh;
             }
             .convite-img {
-                width: 100%; /* Garante ajuste total */
-                height: auto; /* Proporção intacta */
+                width: 100%;
+                height: auto;
             }
             .botao {
                 width: 95%;
