@@ -203,9 +203,11 @@
             display: none;
         }
 
-        /* Botão de confirmação */
-        .botao {
-            display: block;
+        /* Botão de confirmação com imagem do boneco */
+        .botao-confirmacao {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 85%;
             margin: 25px auto;
             padding: 18px;
@@ -222,13 +224,59 @@
             cursor: pointer;
         }
 
-        .botao:hover {
+        .botao-confirmacao::before {
+            content: '';
+            background-image: url('https://i.pinimg.com/1200x/33/5e/4c/335e4cc8631c34f17ade3b01726b92bf.jpg');
+            background-size: cover;
+            background-position: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid #fff;
+        }
+
+        .botao-confirmacao:hover {
             background-color: var(--cor-botao-hover);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .botao:focus {
+        .botao-confirmacao:focus {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+
+        /* Botão do local com GIF de fundo */
+        .botao-local {
+            display: block;
+            width: 85%;
+            margin: 25px auto;
+            padding: 18px;
+            background-color: var(--cor-botao);
+            background-image: url('https://i.pinimg.com/originals/6e/60/8f/6e608f505913f335e9bc6c8511b4e36f.gif');
+            background-size: 40px 40px;
+            background-repeat: no-repeat;
+            background-position: center left 10px;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            box-shadow: var(--sombra);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            padding-left: 60px; /* Espaço para a imagem */
+        }
+
+        .botao-local:hover {
+            background-color: var(--cor-botao-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .botao-local:focus {
             outline: 2px solid #fff;
             outline-offset: 2px;
         }
@@ -251,10 +299,18 @@
             .convite-img:hover {
                 transform: scale(1.05) rotate(2deg);
             }
-            .botao {
+            .botao-confirmacao, .botao-local {
                 width: 95%;
                 font-size: 1.1rem;
                 padding: 16px;
+            }
+            .botao-confirmacao::before {
+                width: 40px;
+                height: 40px;
+            }
+            .botao-local {
+                background-size: 30px 30px;
+                padding-left: 50px;
             }
             h1 {
                 font-size: 1.4rem;
@@ -313,13 +369,13 @@
             <img src="convite2.png" alt="Parte inferior do convite para o aniversário da Maria Liz" class="convite-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <div class="fallback">Imagem não encontrada. Verifique o caminho do arquivo.</div>
             
-            <!-- Botão de confirmação -->
-            <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao" aria-label="Clique para confirmar presença no WhatsApp">
+            <!-- Botão de confirmação com imagem do boneco -->
+            <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao-confirmacao" aria-label="Clique para confirmar presença no WhatsApp">
                 ✅ CONFIRMAR PRESENÇA
             </a>
             
-            <!-- Novo botão para o local do evento com música -->
-            <button class="botao" id="localButton" onclick="tocarMusicaEIrParaLocal()" aria-label="Clique para ver o local do evento com música">
+            <!-- Botão do local com GIF de fundo -->
+            <button class="botao-local" id="localButton" onclick="irParaLocal()" aria-label="Clique para ver o local do evento">
                 📍 LOCAL DO EVENTO
             </button>
         </main>
@@ -334,9 +390,6 @@
             <div class="scroll-arrow"></div>
         </div>
     </div>
-
-    <!-- Tag de áudio oculta (substitua 'musica.mp3' pelo nome do seu arquivo) -->
-    <audio id="musica" src="musica.mp3" preload="auto"></audio>
 
     <script>
         // Função para o contador regressivo
@@ -387,18 +440,7 @@
         const localButton = document.getElementById('localButton');
         observer.observe(localButton);
 
-        // Função para tocar música e redirecionar
-        function tocarMusicaEIrParaLocal() {
-            const audio = document.getElementById('musica');
-            audio.play().then(() => {
-                setTimeout(() => {
-                    window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
-                }, 2000);
-            }).catch(error => {
-                console.log('Autoplay bloqueado:', error);
-                window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
-            });
-        }
-    </script>
-</body>
-</html>
+        // Função para ir ao local do evento
+        function irParaLocal() {
+            window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
+       
