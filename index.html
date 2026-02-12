@@ -52,71 +52,82 @@
             max-height: 90vh;
         }
 
-        /* Indicador de rolagem no canto inferior direito com personagem ao lado e 3 setas empilhadas, compacto */
+        /* Indicador de rolagem melhorado: maior, com texto e animação mais forte */
         .scroll-indicator {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            opacity: 0.3; /* Mesma opacidade */
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            width: 100px; /* Largura reduzida */
-            height: 60px; /* Altura reduzida */
+            opacity: 0.7; /* Mais visível */
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            width: 120px; /* Maior */
+            height: 80px; /* Maior */
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-around; /* Espaço reduzido entre personagem e setas */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             cursor: pointer;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             z-index: 10;
         }
 
         .scroll-indicator:hover {
-            opacity: 0.6; /* Leve aumento no hover */
-            transform: scale(1.05);
+            opacity: 1; /* Totalmente visível no hover */
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5); /* Brilho rosa */
+        }
+
+        .scroll-text {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #ff69b4; /* Rosa */
+            margin-bottom: 5px;
+            text-align: center;
         }
 
         .character-image {
-            width: 40px; /* Tamanho reduzido */
-            height: 40px; /* Tamanho reduzido */
+            width: 40px;
+            height: 40px;
             border-radius: 10px;
+            margin-bottom: 5px;
         }
 
         .scroll-arrows {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 3px; /* Espaço menor entre setas */
+            gap: 5px;
         }
 
         .scroll-arrow {
             width: 0;
             height: 0;
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-top: 12px solid; /* Seta maior */
-            border-top-color: linear-gradient(to bottom, #fff, #ffb6c1); /* Gradiente rosa */
-            border-radius: 3px; /* Bordas mais arredondadas */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Sombra maior para efeito 3D */
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 15px solid; /* Maior */
+            border-top-color: linear-gradient(to bottom, #fff, #ffb6c1);
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
         }
 
-        /* Animações staggered para as 3 setas (bounce sem piscar) */
+        /* Animações staggered mais fortes para as 3 setas */
         .scroll-arrow:nth-child(1) {
-            animation: subtleBounce 2s ease-in-out infinite;
+            animation: strongBounce 1.5s ease-in-out infinite;
         }
 
         .scroll-arrow:nth-child(2) {
-            animation: subtleBounce 2s ease-in-out infinite 0.5s; /* Atraso de 0.5s */
+            animation: strongBounce 1.5s ease-in-out infinite 0.3s;
         }
 
         .scroll-arrow:nth-child(3) {
-            animation: subtleBounce 2s ease-in-out infinite 1s; /* Atraso de 1s */
+            animation: strongBounce 1.5s ease-in-out infinite 0.6s;
         }
 
-        @keyframes subtleBounce {
+        @keyframes strongBounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-3px); } /* Movimento leve */
-            60% { transform: translateY(-1px); }
+            40% { transform: translateY(-8px); } /* Movimento mais forte */
+            60% { transform: translateY(-4px); }
         }
 
         /* Contador regressivo moderno */
@@ -363,9 +374,10 @@
         </main>
     </div>
 
-    <!-- Indicador de rolagem no canto inferior direito com personagem ao lado e 3 setas empilhadas, compacto -->
+    <!-- Indicador de rolagem melhorado -->
     <div class="scroll-indicator" id="scrollIndicator" onclick="rolarParaBaixo()">
-        <img src="https://i.pinimg.com/originals/52/05/ad/5205ad1953cc30b721bb42ee285eba7e.png" alt="Personagem fofo" class="character-image" onerror="this.style.display='none';">
+        <div class="scroll-text">Role ↓</div>
+        <img src="https://i.pinimg.com/originals/52/05/ad/5205ad1953cc30b721bb42ee285eba7e.png" alt="Personagem fofo" class="character-image">
         <div class="scroll-arrows">
             <div class="scroll-arrow"></div>
             <div class="scroll-arrow"></div>
