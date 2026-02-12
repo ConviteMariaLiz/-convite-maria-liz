@@ -203,16 +203,19 @@
             display: none;
         }
 
-        /* Botão de confirmação com imagem centralizada e animada */
+        /* Botão de confirmação com imagem como background e texto centralizado */
         .botao-confirmar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: block;
             width: 85%;
             margin: 25px auto;
             padding: 18px;
             background-color: var(--cor-botao);
+            background-image: url('https://i.pinimg.com/originals/11/6b/b1/116bb116b2ce763a809594a81fc3d841.gif');
+            background-size: 50px 50px;
+            background-position: center left 10px;
+            background-repeat: no-repeat;
             color: white;
+            text-align: center; /* Centraliza o texto */
             text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
@@ -221,14 +224,6 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            gap: 10px; /* Espaço entre imagem e texto */
-        }
-
-        .botao-confirmar img {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            animation: wiggle 2s ease-in-out infinite; /* Animação wiggle em loop */
         }
 
         .botao-confirmar:hover {
@@ -242,16 +237,19 @@
             outline-offset: 2px;
         }
 
-        /* Botão do local do evento com imagem centralizada e animada */
+        /* Botão do local do evento com imagem como background e texto centralizado */
         .botao-local {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: block;
             width: 85%;
             margin: 25px auto;
             padding: 18px;
             background-color: var(--cor-botao);
+            background-image: url('https://i.pinimg.com/originals/6e/60/8f/6e608f505913f335e9bc6c8511b4e36f.gif');
+            background-size: 50px 50px;
+            background-position: center left 10px;
+            background-repeat: no-repeat;
             color: white;
+            text-align: center; /* Centraliza o texto */
             text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
@@ -260,14 +258,6 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            gap: 10px; /* Espaço entre imagem e texto */
-        }
-
-        .botao-local img {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            animation: wiggle 2s ease-in-out infinite; /* Animação wiggle em loop */
         }
 
         .botao-local:hover {
@@ -279,14 +269,6 @@
         .botao-local:focus {
             outline: 2px solid #fff;
             outline-offset: 2px;
-        }
-
-        /* Animação wiggle para as imagens */
-        @keyframes wiggle {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(5deg); }
-            50% { transform: rotate(-5deg); }
-            75% { transform: rotate(3deg); }
         }
 
         /* Responsividade para telas menores (mobile-first) */
@@ -311,12 +293,6 @@
                 width: 95%;
                 font-size: 1.1rem;
                 padding: 16px;
-                flex-direction: column; /* Empilha imagem e texto em mobile */
-                gap: 5px;
-            }
-            .botao-confirmar img, .botao-local img {
-                width: 40px;
-                height: 40px;
             }
             h1 {
                 font-size: 1.4rem;
@@ -375,16 +351,14 @@
             <img src="convite2.png" alt="Parte superior do convite para o aniversário da Maria Liz" class="convite-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <div class="fallback">Imagem não encontrada. Verifique o caminho do arquivo.</div>
             
-            <!-- Botão de confirmação com imagem centralizada e animada -->
+            <!-- Botão de confirmação com imagem como background -->
             <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao-confirmar" aria-label="Clique para confirmar presença no WhatsApp">
-                <img src="https://i.pinimg.com/originals/11/6b/b1/116bb116b2ce763a809594a81fc3d841.gif" alt="Personagem confirmando presença">
-                <span>✅ CONFIRMAR PRESENÇA</span>
+                ✅ CONFIRMAR PRESENÇA
             </a>
             
-            <!-- Novo botão para o local do evento com imagem centralizada e animada -->
+            <!-- Novo botão para o local do evento com imagem como background -->
             <button class="botao-local" id="localButton" onclick="irParaLocal()" aria-label="Clique para ver o local do evento">
-                <img src="https://i.pinimg.com/originals/6e/60/8f/6e608f505913f335e9bc6c8511b4e36f.gif" alt="Personagem no local do evento">
-                <span>📍 LOCAL DO EVENTO</span>
+                📍 LOCAL DO EVENTO
             </button>
         </main>
     </div>
@@ -434,4 +408,24 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const indicator = document.getElementById('scrollIndicator');
-                if (entry.isIntersecting)
+                if (entry.isIntersecting) {
+                    indicator.style.display = 'none'; // Esconde quando o botão entra na viewport
+                } else {
+                    indicator.style.display = 'flex'; // Mostra quando sai
+                }
+            });
+        }, {
+            threshold: 0.1 // 10% do elemento visível
+        });
+
+        // Observa o botão "LOCAL DO EVENTO"
+        const localButton = document.getElementById('localButton');
+        observer.observe(localButton);
+
+        // Função para ir ao local do evento
+        function irParaLocal() {
+            window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
+        }
+    </script>
+</body>
+</html>
