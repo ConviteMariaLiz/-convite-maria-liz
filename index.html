@@ -10,7 +10,7 @@
     <style>
         /* Variáveis CSS para facilitar manutenção */
         :root {
-            --cor-fundo: linear-gradient(135deg, #ff69b4, #ffb6c1); /* Fundo rosa de volta */
+            --cor-fundo: linear-gradient(135deg, #ff69b4, #ffb6c1); /* Fundo rosa */
             --cor-botao: #25D366;
             --cor-botao-hover: #20c157;
             --sombra: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -172,15 +172,15 @@
             margin-top: 5px;
         }
 
-        /* Imagem do cabeçalho (substitui o h1) - Sem fundo, centralizada, próxima ao contador */
+        /* Imagem do cabeçalho (substitui o h1) - Maior, sem fundo, centralizada, próxima ao contador */
         .header-img {
-            width: 50%;
-            max-width: 150px;
+            width: 60%; /* Maior */
+            max-width: 180px; /* Maior */
             height: auto;
             display: block;
-            margin: 0 auto 10px; /* Centralizada e próxima ao contador */
+            margin: 0 auto 5px; /* Centralizada e mais próxima ao contador */
             border-radius: 10px;
-            /* Removido box-shadow para sem fundo */
+            /* Sem box-shadow */
             transition: all 0.3s ease;
         }
 
@@ -336,8 +336,8 @@
                 font-size: 1.5rem;
             }
             .header-img {
-                width: 60%;
-                max-width: 140px;
+                width: 70%; /* Maior em mobile */
+                max-width: 160px;
             }
         }
 
@@ -352,7 +352,7 @@
 <body>
     <div class="container">
         <header>
-            <!-- Imagem do cabeçalho (substitui o h1) - Sem fundo, centralizada, próxima ao contador -->
+            <!-- Imagem do cabeçalho (substitui o h1) - Maior, sem fundo, centralizada, próxima ao contador -->
             <img src="https://i.imgur.com/xG87adO.png" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <div class="fallback">Imagem do cabeçalho não encontrada. Verifique o link.</div>
             
@@ -415,13 +415,15 @@
             const agora = new Date();
             const diff = dataEvento - agora;
 
-            console.log('Diferença:', diff); // Debug - remova se não precisar
+            console.log('Diferença:', diff); // Debug
 
             if (diff > 0) {
                 const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+                console.log('Dias:', dias, 'Horas:', horas, 'Minutos:', minutos, 'Segundos:', segundos); // Debug
 
                 document.getElementById('dias').innerText = dias;
                 document.getElementById('horas').innerText = horas;
@@ -437,6 +439,3 @@
         atualizarContador();
 
         // Função para rolar suavemente para baixo
-        function rolarParaBaixo() {
-            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-        }
