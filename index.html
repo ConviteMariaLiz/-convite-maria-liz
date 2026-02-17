@@ -10,7 +10,7 @@
     <style>
         /* Variáveis CSS para facilitar manutenção */
         :root {
-            --cor-fundo: linear-gradient(135deg, #ff69b4, #ffb6c1); /* Gradiente rosa feminino */
+            --cor-fundo: linear-gradient(135deg, #f0f0f0, #ffffff); /* Fundo neutro e natural (branco/cinza claro) */
             --cor-botao: #25D366;
             --cor-botao-hover: #20c157;
             --sombra: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -32,7 +32,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
+            color: #333; /* Texto escuro para contraste com fundo claro */
             overflow-x: hidden;
         }
 
@@ -45,7 +45,7 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente para naturalidade */
             border-radius: 15px;
             box-shadow: var(--sombra);
             overflow-y: auto;
@@ -58,7 +58,7 @@
             bottom: 20px;
             right: 20px;
             opacity: 0.7; /* Mais visível */
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 20px;
             width: 120px; /* Maior */
             height: 80px; /* Maior */
@@ -75,13 +75,13 @@
         .scroll-indicator:hover {
             opacity: 1; /* Totalmente visível no hover */
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5); /* Brilho rosa */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
         }
 
         .scroll-text {
             font-size: 0.9rem;
             font-weight: bold;
-            color: #ff69b4; /* Rosa */
+            color: #333;
             margin-bottom: 5px;
             text-align: center;
         }
@@ -106,7 +106,7 @@
             border-left: 8px solid transparent;
             border-right: 8px solid transparent;
             border-top: 15px solid; /* Maior */
-            border-top-color: linear-gradient(to bottom, #fff, #ffb6c1);
+            border-top-color: #333;
             border-radius: 3px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
         }
@@ -137,7 +137,7 @@
             gap: 10px;
             margin-bottom: 20px;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 15px;
             box-shadow: var(--sombra);
         }
@@ -172,13 +172,13 @@
             margin-top: 5px;
         }
 
-        /* Imagem do cabeçalho (substitui o h1) - Tamanho pequeno como título */
+        /* Imagem do cabeçalho (substitui o h1) - Centralizada e tamanho pequeno */
         .header-img {
-            width: 50%; /* Menor para tamanho de título */
-            max-width: 150px; /* Limita para não ser grande */
-            height: auto; /* Mantém proporção */
+            width: 50%;
+            max-width: 150px;
+            height: auto;
             display: block;
-            margin-bottom: 20px;
+            margin: 0 auto 20px; /* Centraliza horizontalmente */
             border-radius: 10px;
             box-shadow: var(--sombra);
             transition: all 0.3s ease;
@@ -222,11 +222,11 @@
         .fallback {
             width: 100%;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             text-align: center;
             margin-bottom: 15px;
-            color: #fff;
+            color: #333;
             font-weight: bold;
             display: none;
         }
@@ -243,7 +243,7 @@
             background-position: center left 10px;
             background-repeat: no-repeat;
             color: white;
-            text-align: center; /* Centraliza o texto */
+            text-align: center;
             text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
@@ -277,7 +277,7 @@
             background-position: center left 10px;
             background-repeat: no-repeat;
             color: white;
-            text-align: center; /* Centraliza o texto */
+            text-align: center;
             text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
@@ -337,7 +337,7 @@
                 font-size: 1.5rem;
             }
             .header-img {
-                width: 60%; /* Um pouco maior em mobile para visibilidade */
+                width: 60%;
                 max-width: 140px;
             }
         }
@@ -353,7 +353,7 @@
 <body>
     <div class="container">
         <header>
-            <!-- Imagem do cabeçalho (substitui o h1) - Nova URL e tamanho pequeno -->
+            <!-- Imagem do cabeçalho (substitui o h1) - Centralizada e tamanho pequeno -->
             <img src="https://i.imgur.com/xG87adO.png" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <div class="fallback">Imagem do cabeçalho não encontrada. Verifique o link.</div>
             
@@ -416,6 +416,8 @@
             const agora = new Date();
             const diff = dataEvento - agora;
 
+            console.log('Diferença:', diff); // Debug temporário - remova se não precisar
+
             if (diff > 0) {
                 const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -427,7 +429,7 @@
                 document.getElementById('minutos').innerText = minutos;
                 document.getElementById('segundos').innerText = segundos;
             } else {
-                document.getElementById('contador').innerHTML = '<div style="text-align: center; color: #fff;">O evento já aconteceu! 🎉 Feliz aniversário, Maria Liz!</div>';
+                document.getElementById('contador').innerHTML = '<div style="text-align: center; color: #333;">O evento já aconteceu! 🎉 Feliz aniversário, Maria Liz!</div>';
             }
         }
 
@@ -440,9 +442,4 @@
             window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
         }
 
-        // Função para esconder o indicador quando o botão "LOCAL DO EVENTO" estiver visível (usando Intersection Observer)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const indicator = document.getElementById('scrollIndicator');
-                if (entry.isIntersecting) {
-                    indicator.style.display = 'none'; // Esconde quando o botão entra
+        // Função para esconder o indicador quando o
