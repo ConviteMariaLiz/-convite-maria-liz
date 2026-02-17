@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Convite para o aniversário da Maria Liz. Confirme sua presença via WhatsApp!">
     <title>Convite para o Aniversário da Maria Liz</title>
-    <!-- Fonte externa para um visual mais profissional -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Variáveis CSS para facilitar manutenção */
@@ -52,16 +51,24 @@
             max-height: 90vh;
         }
 
-        /* Indicador de rolagem melhorado: maior, com texto e animação mais forte */
+        /* Estilo da nova imagem do cabeçalho */
+        .header-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+
+        /* Indicador de rolagem melhorado */
         .scroll-indicator {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            opacity: 0.7; /* Mais visível */
+            opacity: 0.7;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 20px;
-            width: 120px; /* Maior */
-            height: 80px; /* Maior */
+            width: 120px;
+            height: 80px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -73,15 +80,15 @@
         }
 
         .scroll-indicator:hover {
-            opacity: 1; /* Totalmente visível no hover */
+            opacity: 1;
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5); /* Brilho rosa */
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
         }
 
         .scroll-text {
             font-size: 0.9rem;
             font-weight: bold;
-            color: #ff69b4; /* Rosa */
+            color: #ff69b4;
             margin-bottom: 5px;
             text-align: center;
         }
@@ -105,32 +112,23 @@
             height: 0;
             border-left: 8px solid transparent;
             border-right: 8px solid transparent;
-            border-top: 15px solid; /* Maior */
-            border-top-color: linear-gradient(to bottom, #fff, #ffb6c1);
+            border-top: 15px solid;
+            border-top-color: #fff;
             border-radius: 3px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
         }
 
-        /* Animações staggered mais fortes para as 3 setas */
-        .scroll-arrow:nth-child(1) {
-            animation: strongBounce 1.5s ease-in-out infinite;
-        }
-
-        .scroll-arrow:nth-child(2) {
-            animation: strongBounce 1.5s ease-in-out infinite 0.3s;
-        }
-
-        .scroll-arrow:nth-child(3) {
-            animation: strongBounce 1.5s ease-in-out infinite 0.6s;
-        }
+        .scroll-arrow:nth-child(1) { animation: strongBounce 1.5s ease-in-out infinite; }
+        .scroll-arrow:nth-child(2) { animation: strongBounce 1.5s ease-in-out infinite 0.3s; }
+        .scroll-arrow:nth-child(3) { animation: strongBounce 1.5s ease-in-out infinite 0.6s; }
 
         @keyframes strongBounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-8px); } /* Movimento mais forte */
+            40% { transform: translateY(-8px); }
             60% { transform: translateY(-4px); }
         }
 
-        /* Contador regressivo moderno */
+        /* Contador regressivo */
         #contador {
             display: flex;
             justify-content: center;
@@ -156,14 +154,11 @@
             transition: transform 0.3s ease;
         }
 
-        .unidade:hover {
-            transform: scale(1.05);
-        }
+        .unidade:hover { transform: scale(1.05); }
 
         .numero {
             font-size: 1.8rem;
             font-family: 'Courier New', monospace;
-            transition: all 0.5s ease;
         }
 
         .label {
@@ -172,7 +167,6 @@
             margin-top: 5px;
         }
 
-        /* Imagens do convite com animações */
         .convite-img {
             width: 100%;
             height: auto;
@@ -180,7 +174,6 @@
             margin-bottom: 15px;
             border-radius: 10px;
             box-shadow: var(--sombra);
-            transition: all 0.3s ease;
             animation: fadeIn 1.5s ease-in, balanco 3s ease-in-out infinite;
         }
 
@@ -196,12 +189,6 @@
             75% { transform: rotate(0.5deg); }
         }
 
-        .convite-img:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-        }
-
-        /* Fallback para imagens que não carregam */
         .fallback {
             width: 100%;
             padding: 20px;
@@ -209,131 +196,59 @@
             border-radius: 10px;
             text-align: center;
             margin-bottom: 15px;
-            color: #fff;
-            font-weight: bold;
             display: none;
         }
 
-        /* Botão de confirmação com imagem como background e texto centralizado */
-        .botao-confirmar {
+        .botao-confirmar, .botao-local {
             display: block;
             width: 85%;
             margin: 25px auto;
             padding: 18px;
             background-color: var(--cor-botao);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            box-shadow: var(--sombra);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .botao-confirmar {
             background-image: url('https://i.pinimg.com/originals/11/6b/b1/116bb116b2ce763a809594a81fc3d841.gif');
             background-size: 50px 50px;
             background-position: center left 10px;
             background-repeat: no-repeat;
-            color: white;
-            text-align: center; /* Centraliza o texto */
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            box-shadow: var(--sombra);
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
         }
 
-        .botao-confirmar:hover {
-            background-color: var(--cor-botao-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .botao-confirmar:focus {
-            outline: 2px solid #fff;
-            outline-offset: 2px;
-        }
-
-        /* Botão do local do evento com imagem como background e texto centralizado */
         .botao-local {
-            display: block;
-            width: 85%;
-            margin: 25px auto;
-            padding: 18px;
-            background-color: var(--cor-botao);
             background-image: url('https://i.pinimg.com/originals/6e/60/8f/6e608f505913f335e9bc6c8511b4e36f.gif');
             background-size: 50px 50px;
             background-position: center left 10px;
             background-repeat: no-repeat;
-            color: white;
-            text-align: center; /* Centraliza o texto */
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            box-shadow: var(--sombra);
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
         }
 
-        .botao-local:hover {
-            background-color: var(--cor-botao-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .botao-local:focus {
-            outline: 2px solid #fff;
-            outline-offset: 2px;
-        }
-
-        /* Responsividade para telas menores (mobile-first) */
         @media (max-width: 600px) {
-            .container {
-                max-width: 98%;
-                padding: 10px;
-                max-height: 95vh;
-            }
-            .scroll-indicator {
-                display: flex;
-            }
-            .convite-img {
-                width: 100%;
-                height: auto;
-                animation: fadeIn 1.5s ease-in, balanco 3s ease-in-out infinite;
-            }
-            .convite-img:hover {
-                transform: scale(1.05) rotate(2deg);
-            }
-            .botao-confirmar, .botao-local {
-                width: 95%;
-                font-size: 1.1rem;
-                padding: 16px;
-            }
-            h1 {
-                font-size: 1.4rem;
-            }
-            #contador {
-                flex-wrap: wrap;
-                gap: 5px;
-            }
-            .unidade {
-                min-width: 50px;
-                padding: 8px;
-            }
-            .numero {
-                font-size: 1.5rem;
-            }
+            .container { max-width: 98%; padding: 10px; max-height: 95vh; }
+            .botao-confirmar, .botao-local { width: 95%; font-size: 1.1rem; padding: 16px; }
+            #contador { flex-wrap: wrap; gap: 5px; }
+            .unidade { min-width: 50px; padding: 8px; }
+            .numero { font-size: 1.5rem; }
         }
 
-        /* Esconde o indicador em telas grandes */
         @media (min-width: 601px) {
-            .scroll-indicator {
-                display: none;
-            }
+            .scroll-indicator { display: none; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 style="text-align: center; margin-bottom: 20px; font-size: 1.5rem;">🎂 Convite Especial 🎂</h1>
-            <!-- Contador regressivo moderno -->
+            <img src="https://i.imgur.com/IcUE1sP.png" alt="Convite Especial" class="header-img">
+            
             <div id="contador">
                 <div class="unidade">
                     <span id="dias" class="numero">0</span>
@@ -354,27 +269,22 @@
             </div>
         </header>
         <main>
-            <!-- Primeira imagem do convite -->
-            <img src="convite.png" alt="Parte superior do convite para o aniversário da Maria Liz" class="convite-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="fallback">Imagem não encontrada. Verifique o caminho do arquivo.</div>
+            <img src="convite.png" alt="Parte superior do convite" class="convite-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="fallback">Imagem não encontrada.</div>
             
-            <!-- Segunda imagem do convite -->
-            <img src="convite2.png" alt="Parte superior do convite para o aniversário da Maria Liz" class="convite-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="fallback">Imagem não encontrada. Verifique o caminho do arquivo.</div>
+            <img src="convite2.png" alt="Parte inferior do convite" class="convite-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="fallback">Imagem não encontrada.</div>
             
-            <!-- Botão de confirmação com imagem como background -->
-            <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao-confirmar" aria-label="Clique para confirmar presença no WhatsApp">
+            <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao-confirmar">
                 ✅ CONFIRMAR PRESENÇA
             </a>
             
-            <!-- Novo botão para o local do evento com imagem como background -->
-            <button class="botao-local" id="localButton" onclick="irParaLocal()" aria-label="Clique para ver o local do evento">
+            <button class="botao-local" id="localButton" onclick="irParaLocal()">
                 📍 LOCAL DO EVENTO
             </button>
         </main>
     </div>
 
-    <!-- Indicador de rolagem melhorado -->
     <div class="scroll-indicator" id="scrollIndicator" onclick="rolarParaBaixo()">
         <div class="scroll-text">Role ↓</div>
         <img src="https://i.pinimg.com/originals/52/05/ad/5205ad1953cc30b721bb42ee285eba7e.png" alt="Personagem fofo" class="character-image">
@@ -386,9 +296,8 @@
     </div>
 
     <script>
-        // Função para o contador regressivo
         function atualizarContador() {
-            const dataEvento = new Date('2026-03-29T00:00:00'); // Data do evento (29 de março de 2026)
+            const dataEvento = new Date('2026-03-29T00:00:00');
             const agora = new Date();
             const diff = dataEvento - agora;
 
@@ -407,34 +316,26 @@
             }
         }
 
-        // Atualiza o contador a cada segundo
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
-        // Função para rolar suavemente para baixo
         function rolarParaBaixo() {
             window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
         }
 
-        // Função para esconder o indicador quando o botão "LOCAL DO EVENTO" estiver visível (usando Intersection Observer)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const indicator = document.getElementById('scrollIndicator');
                 if (entry.isIntersecting) {
-                    indicator.style.display = 'none'; // Esconde quando o botão entra na viewport
+                    indicator.style.display = 'none';
                 } else {
-                    indicator.style.display = 'flex'; // Mostra quando sai
+                    if (window.innerWidth <= 600) indicator.style.display = 'flex';
                 }
             });
-        }, {
-            threshold: 0.1 // 10% do elemento visível
-        });
+        }, { threshold: 0.1 });
 
-        // Observa o botão "LOCAL DO EVENTO"
-        const localButton = document.getElementById('localButton');
-        observer.observe(localButton);
+        observer.observe(document.getElementById('localButton'));
 
-        // Função para ir ao local do evento
         function irParaLocal() {
             window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
         }
