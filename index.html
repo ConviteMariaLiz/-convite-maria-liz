@@ -130,13 +130,13 @@
             60% { transform: translateY(-4px); }
         }
 
-        /* Imagem do cabeçalho (substitui o h1) - Grande e próxima ao convite como título */
+        /* Imagem do cabeçalho (substitui o h1) - Grande e colada ao convite como título */
         .header-img {
             width: 90%; /* Grande */
             max-width: 300px; /* Grande */
             height: auto;
             display: block;
-            margin: 0 auto 5px; /* Centralizada e próxima ao convite */
+            margin: 0 auto 0px; /* Centralizada e colada ao convite */
             border-radius: 10px;
             /* Sem box-shadow */
             transition: all 0.3s ease;
@@ -299,7 +299,7 @@
 <body>
     <div class="container">
         <header>
-            <!-- Imagem do cabeçalho (substitui o h1) - Grande e próxima ao convite como título -->
+            <!-- Imagem do cabeçalho (substitui o h1) - Grande e colada ao convite como título -->
             <img src="tela.png" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <div class="fallback">Imagem do cabeçalho não encontrada. Verifique o caminho.</div>
         </header>
