@@ -3,167 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convite Maria Liz</title>
+    <meta name="description" content="Convite para o aniversário da Maria Liz. Confirme sua presença via WhatsApp!">
+    <title>Convite para o Aniversário da Maria Liz</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --cor-fundo: linear-gradient(135deg, #ff69b4, #ffb6c1);
             --cor-botao: #25D366;
+            --cor-botao-hover: #20c157;
             --sombra: 0 4px 15px rgba(0, 0, 0, 0.4);
+            --fonte-principal: 'Roboto', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        body {
+        body, html {
             width: 100%;
-            height: 100vh;
-            font-family: 'Roboto', sans-serif;
+            height: 100%;
+            font-family: var(--fonte-principal);
             background: var(--cor-fundo);
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            color: #fff;
+            overflow-x: hidden;
         }
 
         .container {
-            width: 95%;
-            max-width: 450px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 15px;
-            box-shadow: var(--sombra);
-            max-height: 95vh;
-            overflow-y: auto;
+            position: relative;
+            width: 100%;
+            max-width: 500px;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        /* BLOCO DO CONTADOR COM A IMAGEM JUNTO */
-        .contador-wrapper {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 10px;
-            margin-bottom: 20px;
             box-shadow: var(--sombra);
-            text-align: center;
+            overflow-y: auto;
+            max-height: 90vh;
         }
 
-        /* A imagem onde você marcou, sem lacunas */
-        .img-selo {
-            width: 180px; /* Tamanho visível */
+        /* AJUSTE DA IMAGEM DO TOPO PARA FICAR PRÓXIMA AO CONTADOR */
+        .img-header {
+            width: 70%; /* Tamanho visível e proporcional */
+            max-width: 250px;
             height: auto;
-            margin-bottom: -5px; /* Puxa o contador para perto */
-            display: inline-block;
+            margin-bottom: 10px; /* Reduzi para tirar a lacuna */
+            display: block;
         }
 
-        .contador-flex {
+        #contador {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            padding-top: 10px;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: var(--sombra);
         }
 
         .unidade {
-            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, #fff, #f0f0f0);
             border-radius: 10px;
-            padding: 8px;
-            flex: 1;
-            min-width: 55px;
+            padding: 10px;
+            min-width: 60px;
+            box-shadow: var(--sombra);
             color: #333;
             font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
         }
 
-        .numero { font-size: 1.5rem; display: block; }
-        .label { font-size: 0.65rem; text-transform: uppercase; color: #666; }
+        .numero {
+            font-size: 1.8rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
 
         .convite-img {
             width: 100%;
-            border-radius: 10px;
+            height: auto;
+            display: block;
             margin-bottom: 15px;
+            border-radius: 10px;
             box-shadow: var(--sombra);
+            transition: all 0.3s ease;
+            animation: fadeIn 1.5s ease-in, balanco 3s ease-in-out infinite;
         }
 
-        .botao {
-            width: 100%;
-            padding: 16px;
-            margin-bottom: 10px;
-            border-radius: 50px;
-            border: none;
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--sombra);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes balanco {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(1deg); }
+            50% { transform: rotate(-1deg); }
+            75% { transform: rotate(0.5deg); }
+        }
+
+        .botao-confirmar, .botao-local {
+            display: block;
+            width: 85%;
+            margin: 20px auto;
+            padding: 18px;
             background-color: var(--cor-botao);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            box-shadow: var(--sombra);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            background-size: 50px 50px;
+            background-position: center left 10px;
+            background-repeat: no-repeat;
         }
 
-        /* Estilo específico para mobile */
-        @media (max-width: 400px) {
-            .numero { font-size: 1.2rem; }
-            .img-selo { width: 140px; }
+        .botao-confirmar { background-image: url('https://i.pinimg.com/originals/11/6b/b1/116bb116b2ce763a809594a81fc3d841.gif'); }
+        .botao-local { background-image: url('https://i.pinimg.com/originals/6e/60/8f/6e608f505913f335e9bc6c8511b4e36f.gif'); }
+
+        @media (max-width: 600px) {
+            .container { max-width: 98%; padding: 10px; }
+            .unidade { min-width: 50px; padding: 8px; }
+            .numero { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <div class="contador-wrapper">
-            <img src="https://i.imgur.com/IcUE1sP.png" class="img-selo" alt="Maria Liz">
+        <header style="text-align: center; width: 100%; display: flex; flex-direction: column; align-items: center;">
             
-            <div class="contador-flex" id="contador">
+            <img src="https://i.imgur.com/IcUE1sP.png" alt="Maria Liz 3 anos" class="img-header">
+
+            <div id="contador">
                 <div class="unidade">
                     <span id="dias" class="numero">0</span>
-                    <span class="label">Dias</span>
+                    <div class="label">Dias</div>
                 </div>
                 <div class="unidade">
                     <span id="horas" class="numero">0</span>
-                    <span class="label">Horas</span>
+                    <div class="label">Horas</div>
                 </div>
                 <div class="unidade">
                     <span id="minutos" class="numero">0</span>
-                    <span class="label">Min</span>
+                    <div class="label">Min</div>
                 </div>
                 <div class="unidade">
                     <span id="segundos" class="numero">0</span>
-                    <span class="label">Seg</span>
+                    <div class="label">Seg</div>
                 </div>
             </div>
-        </div>
+        </header>
 
         <main style="width: 100%;">
-            <img src="convite.png" class="convite-img" alt="Convite" onerror="this.style.display='none'">
-            <img src="convite2.png" class="convite-img" alt="Convite parte 2" onerror="this.style.display='none'">
-
-            <a href="https://wa.me/5585921508496?text=Confirmado!" class="botao">
+            <img src="convite.png" alt="Convite" class="convite-img" onerror="this.style.display='none';">
+            <img src="convite2.png" alt="Convite" class="convite-img" onerror="this.style.display='none';">
+            
+            <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao-confirmar">
                 ✅ CONFIRMAR PRESENÇA
             </a>
-
-            <button class="botao" onclick="window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank')">
+            
+            <button class="botao-local" id="localButton" onclick="irParaLocal()">
                 📍 LOCAL DO EVENTO
             </button>
         </main>
     </div>
 
     <script>
-        function atualizar() {
-            const data = new Date('2026-03-29T00:00:00');
-            const diff = data - new Date();
+        function atualizarContador() {
+            const dataEvento = new Date('2026-03-29T00:00:00');
+            const agora = new Date();
+            const diff = dataEvento - agora;
+
             if (diff > 0) {
-                document.getElementById('dias').innerText = Math.floor(diff / 864e5);
-                document.getElementById('horas').innerText = Math.floor((diff % 864e5) / 36e5);
-                document.getElementById('minutos').innerText = Math.floor((diff % 36e5) / 6e4);
-                document.getElementById('segundos').innerText = Math.floor((diff % 6e4) / 1e3);
+                document.getElementById('dias').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById('horas').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('minutos').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('segundos').innerText = Math.floor((diff % (1000 * 60)) / 1000);
             }
         }
-        setInterval(atualizar, 1000);
-        atualizar();
+        setInterval(atualizarContador, 1000);
+        atualizarContador();
+
+        function irParaLocal() {
+            window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
+        }
     </script>
 </body>
 </html>
