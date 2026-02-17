@@ -172,9 +172,10 @@
             margin-top: 5px;
         }
 
-        /* Imagem do cabeçalho (substitui o h1) */
+        /* Imagem do cabeçalho (substitui o h1) - Tamanho médio e agradável */
         .header-img {
-            width: 100%; /* Ajusta à largura do container */
+            width: 80%; /* Tamanho médio, agradável na tela */
+            max-width: 400px; /* Limita para não ser muito grande */
             height: auto; /* Mantém proporção */
             display: block;
             margin-bottom: 20px;
@@ -336,8 +337,8 @@
                 font-size: 1.5rem;
             }
             .header-img {
-                width: 100%;
-                height: auto;
+                width: 90%; /* Um pouco maior em mobile para visibilidade */
+                max-width: 350px;
             }
         }
 
@@ -352,7 +353,7 @@
 <body>
     <div class="container">
         <header>
-            <!-- Imagem do cabeçalho (substitui o h1) - Nova URL do Imgur -->
+            <!-- Imagem do cabeçalho (substitui o h1) - URL em PNG e tamanho médio -->
             <img src="https://i.imgur.com/Ac5Oq3f.png" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <div class="fallback">Imagem do cabeçalho não encontrada. Verifique o link.</div>
             
@@ -445,9 +446,4 @@
                 const indicator = document.getElementById('scrollIndicator');
                 if (entry.isIntersecting) {
                     indicator.style.display = 'none'; // Esconde quando o botão entra na viewport
-                } else {
-                    indicator.style.display = 'flex'; // Mostra quando sai
-                }
-            });
-        }, {
-            threshold: 0.1 //
+               
