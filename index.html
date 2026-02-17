@@ -353,7 +353,7 @@
     <div class="container">
         <header>
             <!-- Imagem do cabeçalho (substitui o h1) - Nova URL, tamanho médio, próxima ao contador -->
-            <img src="https://i.imgur.com/JJr9fN3.png" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <img src="https://i.imgur.com/IcUE1sP.png" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <div class="fallback">Imagem do cabeçalho não encontrada. Verifique o link.</div>
             
             <!-- Contador regressivo moderno -->
@@ -440,4 +440,7 @@
 
         // Função para rolar suavemente para baixo
         function rolarParaBaixo() {
-            window.scrollTo({ top: window.innerHeight, behavior:
+            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+        }
+
+        // Função para esconder o indicador quando o botão "LOCAL DO EVENTO" estiver visível (usando Intersection
