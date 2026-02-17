@@ -436,4 +436,14 @@
 
         // Função para rolar suavemente para baixo
         function rolarParaBaixo() {
-            window.scrollTo({ top: window.innerHeight, behavior:
+            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+        }
+
+        // Função para esconder o indicador quando o botão "LOCAL DO EVENTO" estiver visível (usando Intersection Observer)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const indicator = document.getElementById('scrollIndicator');
+                if (entry.isIntersecting) {
+                    indicator.style.display = 'none'; // Esconde quando o botão entra na viewport
+                } else {
+                   
