@@ -10,7 +10,7 @@
     <style>
         /* Variáveis CSS para facilitar manutenção */
         :root {
-            --cor-fundo: linear-gradient(135deg, #ff69b4, #ffb6c1); /* Fundo rosa */
+            --cor-fundo: linear-gradient(135deg, #ff69b4, #ffb6c1); /* Gradiente rosa feminino */
             --cor-botao: #25D366;
             --cor-botao-hover: #20c157;
             --sombra: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -172,13 +172,13 @@
             margin-top: 5px;
         }
 
-        /* Imagem do cabeçalho (substitui o h1) - 70% da largura, próxima ao contador, sem fundo */
+        /* Imagem do cabeçalho (substitui o h1) - Como título, próxima ao contador */
         .header-img {
             width: 70%; /* 70% da largura do container */
             max-width: 200px; /* Limite para manter proporcional */
             height: auto;
             display: block;
-            margin: 0 auto 0px; /* Centralizada e bem próxima ao contador */
+            margin: 0 auto 5px; /* Centralizada e próxima ao contador */
             border-radius: 10px;
             /* Sem box-shadow */
             transition: all 0.3s ease;
@@ -242,7 +242,7 @@
             background-position: center left 10px;
             background-repeat: no-repeat;
             color: white;
-            text-align: center;
+            text-align: center; /* Centraliza o texto */
             text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
@@ -276,7 +276,7 @@
             background-position: center left 10px;
             background-repeat: no-repeat;
             color: white;
-            text-align: center;
+            text-align: center; /* Centraliza o texto */
             text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
@@ -336,7 +336,7 @@
                 font-size: 1.5rem;
             }
             .header-img {
-                width: 80%; /* Maior em mobile para visibilidade */
+                width: 80%; /* Maior em mobile */
                 max-width: 180px;
             }
         }
@@ -352,7 +352,7 @@
 <body>
     <div class="container">
         <header>
-            <!-- Imagem do cabeçalho (substitui o h1) - 70% da largura, próxima ao contador -->
+            <!-- Imagem do cabeçalho (substitui o h1) - Como título, próxima ao contador -->
             <img src="tela.png" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <div class="fallback">Imagem do cabeçalho não encontrada. Verifique o caminho.</div>
             
@@ -415,15 +415,11 @@
             const agora = new Date();
             const diff = dataEvento - agora;
 
-            console.log('Diferença:', diff); // Debug
-
             if (diff > 0) {
                 const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const segundos = Math.floor((diff % (1000 * 60)) / 1000);
-
-                console.log('Dias:', dias, 'Horas:', horas, 'Minutos:', minutos, 'Segundos:', segundos); // Debug
 
                 document.getElementById('dias').innerText = dias;
                 document.getElementById('horas').innerText = horas;
@@ -445,4 +441,8 @@
 
         // Função para esconder o indicador quando o botão "LOCAL DO EVENTO" estiver visível (usando Intersection Observer)
         const observer = new IntersectionObserver((entries) => {
-           
+            entries.forEach(entry => {
+                const indicator = document.getElementById('scrollIndicator');
+                if (entry.isIntersecting) {
+                    indicator.style.display = 'none'; // Esconde quando o botão entra na viewport
+               
