@@ -10,7 +10,7 @@
     <style>
         /* Variáveis CSS para facilitar manutenção */
         :root {
-            --cor-fundo: linear-gradient(135deg, #f0f0f0, #ffffff); /* Fundo neutro e natural (branco/cinza claro) */
+            --cor-fundo: linear-gradient(135deg, #ff69b4, #ffb6c1); /* Fundo rosa de volta */
             --cor-botao: #25D366;
             --cor-botao-hover: #20c157;
             --sombra: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -32,7 +32,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #333; /* Texto escuro para contraste com fundo claro */
+            color: #fff;
             overflow-x: hidden;
         }
 
@@ -45,7 +45,7 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente para naturalidade */
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             box-shadow: var(--sombra);
             overflow-y: auto;
@@ -58,7 +58,7 @@
             bottom: 20px;
             right: 20px;
             opacity: 0.7; /* Mais visível */
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 20px;
             width: 120px; /* Maior */
             height: 80px; /* Maior */
@@ -75,13 +75,13 @@
         .scroll-indicator:hover {
             opacity: 1; /* Totalmente visível no hover */
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5); /* Brilho rosa */
         }
 
         .scroll-text {
             font-size: 0.9rem;
             font-weight: bold;
-            color: #333;
+            color: #ff69b4; /* Rosa */
             margin-bottom: 5px;
             text-align: center;
         }
@@ -106,7 +106,7 @@
             border-left: 8px solid transparent;
             border-right: 8px solid transparent;
             border-top: 15px solid; /* Maior */
-            border-top-color: #333;
+            border-top-color: linear-gradient(to bottom, #fff, #ffb6c1);
             border-radius: 3px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
         }
@@ -137,7 +137,7 @@
             gap: 10px;
             margin-bottom: 20px;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             box-shadow: var(--sombra);
         }
@@ -172,21 +172,20 @@
             margin-top: 5px;
         }
 
-        /* Imagem do cabeçalho (substitui o h1) - Centralizada e tamanho pequeno */
+        /* Imagem do cabeçalho (substitui o h1) - Sem fundo, centralizada, próxima ao contador */
         .header-img {
             width: 50%;
             max-width: 150px;
             height: auto;
             display: block;
-            margin: 0 auto 20px; /* Centraliza horizontalmente */
+            margin: 0 auto 10px; /* Centralizada e próxima ao contador */
             border-radius: 10px;
-            box-shadow: var(--sombra);
+            /* Removido box-shadow para sem fundo */
             transition: all 0.3s ease;
         }
 
         .header-img:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
         }
 
         /* Imagens do convite com animações */
@@ -222,11 +221,11 @@
         .fallback {
             width: 100%;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             text-align: center;
             margin-bottom: 15px;
-            color: #333;
+            color: #fff;
             font-weight: bold;
             display: none;
         }
@@ -353,7 +352,7 @@
 <body>
     <div class="container">
         <header>
-            <!-- Imagem do cabeçalho (substitui o h1) - Centralizada e tamanho pequeno -->
+            <!-- Imagem do cabeçalho (substitui o h1) - Sem fundo, centralizada, próxima ao contador -->
             <img src="https://i.imgur.com/xG87adO.png" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <div class="fallback">Imagem do cabeçalho não encontrada. Verifique o link.</div>
             
@@ -416,7 +415,7 @@
             const agora = new Date();
             const diff = dataEvento - agora;
 
-            console.log('Diferença:', diff); // Debug temporário - remova se não precisar
+            console.log('Diferença:', diff); // Debug - remova se não precisar
 
             if (diff > 0) {
                 const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -429,7 +428,7 @@
                 document.getElementById('minutos').innerText = minutos;
                 document.getElementById('segundos').innerText = segundos;
             } else {
-                document.getElementById('contador').innerHTML = '<div style="text-align: center; color: #333;">O evento já aconteceu! 🎉 Feliz aniversário, Maria Liz!</div>';
+                document.getElementById('contador').innerHTML = '<div style="text-align: center; color: #fff;">O evento já aconteceu! 🎉 Feliz aniversário, Maria Liz!</div>';
             }
         }
 
@@ -441,5 +440,3 @@
         function rolarParaBaixo() {
             window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
         }
-
-        // Função para esconder o indicador quando o
