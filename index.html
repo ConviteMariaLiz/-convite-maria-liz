@@ -172,10 +172,10 @@
             margin-top: 5px;
         }
 
-        /* Imagem do cabeçalho (substitui o h1) - Tamanho médio, bem próxima ao contador, sem fundo */
+        /* Imagem do cabeçalho (substitui o h1) - 70% da largura, próxima ao contador, sem fundo */
         .header-img {
-            width: 60%; /* Tamanho médio */
-            max-width: 180px; /* Tamanho médio */
+            width: 70%; /* 70% da largura do container */
+            max-width: 200px; /* Limite para manter proporcional */
             height: auto;
             display: block;
             margin: 0 auto 0px; /* Centralizada e bem próxima ao contador */
@@ -336,8 +336,8 @@
                 font-size: 1.5rem;
             }
             .header-img {
-                width: 70%; /* Maior em mobile */
-                max-width: 160px;
+                width: 80%; /* Maior em mobile para visibilidade */
+                max-width: 180px;
             }
         }
 
@@ -352,7 +352,7 @@
 <body>
     <div class="container">
         <header>
-            <!-- Imagem do cabeçalho (substitui o h1) - Tamanho médio, bem próxima ao contador -->
+            <!-- Imagem do cabeçalho (substitui o h1) - 70% da largura, próxima ao contador -->
             <img src="tela.png" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <div class="fallback">Imagem do cabeçalho não encontrada. Verifique o caminho.</div>
             
@@ -445,6 +445,4 @@
 
         // Função para esconder o indicador quando o botão "LOCAL DO EVENTO" estiver visível (usando Intersection Observer)
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const indicator = document.getElementById('scrollIndicator');
-                if (entry
+           
