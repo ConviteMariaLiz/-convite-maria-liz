@@ -10,7 +10,7 @@
     <style>
         /* Variáveis CSS para facilitar manutenção */
         :root {
-            --cor-fundo: linear-gradient(135deg, #ff69b4, #ffb6c1); /* Fundo rosa */
+            --cor-fundo: linear-gradient(135deg, #ff69b4, #ffb6c1); /* Gradiente rosa feminino */
             --cor-botao: #25D366;
             --cor-botao-hover: #20c157;
             --sombra: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -172,22 +172,6 @@
             margin-top: 5px;
         }
 
-        /* Imagem do cabeçalho (substitui o h1) - Tamanho médio, próxima ao contador, sem fundo */
-        .header-img {
-            width: 50%; /* Tamanho médio */
-            max-width: 150px; /* Tamanho médio */
-            height: auto;
-            display: block;
-            margin: 0 auto 2px; /* Centralizada e próxima ao contador */
-            border-radius: 10px;
-            /* Sem box-shadow */
-            transition: all 0.3s ease;
-        }
-
-        .header-img:hover {
-            transform: scale(1.05);
-        }
-
         /* Imagens do convite com animações */
         .convite-img {
             width: 100%;
@@ -242,7 +226,7 @@
             background-position: center left 10px;
             background-repeat: no-repeat;
             color: white;
-            text-align: center;
+            text-align: center; /* Centraliza o texto */
             text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
@@ -276,7 +260,7 @@
             background-position: center left 10px;
             background-repeat: no-repeat;
             color: white;
-            text-align: center;
+            text-align: center; /* Centraliza o texto */
             text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
@@ -335,10 +319,6 @@
             .numero {
                 font-size: 1.5rem;
             }
-            .header-img {
-                width: 60%; /* Maior em mobile */
-                max-width: 140px;
-            }
         }
 
         /* Esconde o indicador em telas grandes */
@@ -352,10 +332,7 @@
 <body>
     <div class="container">
         <header>
-            <!-- Imagem do cabeçalho (substitui o h1) - Nova URL, tamanho médio, próxima ao contador -->
-            <img src="https://i.imgur.com/IcUE1sP.png" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="fallback">Imagem do cabeçalho não encontrada. Verifique o link.</div>
-            
+            <h1 style="text-align: center; margin-bottom: 20px; font-size: 1.5rem;">🎂 Convite Especial 🎂</h1>
             <!-- Contador regressivo moderno -->
             <div id="contador">
                 <div class="unidade">
@@ -415,15 +392,11 @@
             const agora = new Date();
             const diff = dataEvento - agora;
 
-            console.log('Diferença:', diff); // Debug
-
             if (diff > 0) {
                 const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const segundos = Math.floor((diff % (1000 * 60)) / 1000);
-
-                console.log('Dias:', dias, 'Horas:', horas, 'Minutos:', minutos, 'Segundos:', segundos); // Debug
 
                 document.getElementById('dias').innerText = dias;
                 document.getElementById('horas').innerText = horas;
@@ -443,4 +416,28 @@
             window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
         }
 
-        // Função para esconder o indicador quando o botão "LOCAL DO EVENTO" estiver visível (usando Intersection
+        // Função para esconder o indicador quando o botão "LOCAL DO EVENTO" estiver visível (usando Intersection Observer)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const indicator = document.getElementById('scrollIndicator');
+                if (entry.isIntersecting) {
+                    indicator.style.display = 'none'; // Esconde quando o botão entra na viewport
+                } else {
+                    indicator.style.display = 'flex'; // Mostra quando sai
+                }
+            });
+        }, {
+            threshold: 0.1 // 10% do elemento visível
+        });
+
+        // Observa o botão "LOCAL DO EVENTO"
+        const localButton = document.getElementById('localButton');
+        observer.observe(localButton);
+
+        // Função para ir ao local do evento
+        function irParaLocal() {
+            window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
+        }
+    </script>
+</body>
+</html>
