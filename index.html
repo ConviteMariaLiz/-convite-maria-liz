@@ -130,20 +130,46 @@
             60% { transform: translateY(-4px); }
         }
 
-        /* Imagem do cabeçalho (substitui o h1) - Grande e colada ao convite como título */
-        .header-img {
-            width: 90%; /* Grande */
-            max-width: 300px; /* Grande */
-            height: auto;
-            display: block;
-            margin: 0 auto 0px; /* Centralizada e colada ao convite */
-            border-radius: 10px;
-            /* Sem box-shadow */
-            transition: all 0.3s ease;
+        /* Contador regressivo moderno */
+        #contador {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: var(--sombra);
         }
 
-        .header-img:hover {
+        .unidade {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+            border-radius: 10px;
+            padding: 10px;
+            min-width: 60px;
+            box-shadow: var(--sombra);
+            color: #333;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .unidade:hover {
             transform: scale(1.05);
+        }
+
+        .numero {
+            font-size: 1.8rem;
+            font-family: 'Courier New', monospace;
+            transition: all 0.5s ease;
+        }
+
+        .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-top: 5px;
         }
 
         /* Imagens do convite com animações */
@@ -282,9 +308,16 @@
             h1 {
                 font-size: 1.4rem;
             }
-            .header-img {
-                width: 95%; /* Ainda maior em mobile */
-                max-width: 280px;
+            #contador {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            .unidade {
+                min-width: 50px;
+                padding: 8px;
+            }
+            .numero {
+                font-size: 1.5rem;
             }
         }
 
@@ -299,9 +332,26 @@
 <body>
     <div class="container">
         <header>
-            <!-- Imagem do cabeçalho (substitui o h1) - Grande e colada ao convite como título -->
-            <img src="tela.png" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="fallback">Imagem do cabeçalho não encontrada. Verifique o caminho.</div>
+            <h1 style="text-align: center; margin-bottom: 20px; font-size: 1.5rem;">🎂 Convite Especial 🎂</h1>
+            <!-- Contador regressivo moderno -->
+            <div id="contador">
+                <div class="unidade">
+                    <span id="dias" class="numero">0</span>
+                    <div class="label">Dias</div>
+                </div>
+                <div class="unidade">
+                    <span id="horas" class="numero">0</span>
+                    <div class="label">Horas</div>
+                </div>
+                <div class="unidade">
+                    <span id="minutos" class="numero">0</span>
+                    <div class="label">Min</div>
+                </div>
+                <div class="unidade">
+                    <span id="segundos" class="numero">0</span>
+                    <div class="label">Seg</div>
+                </div>
+            </div>
         </header>
         <main>
             <!-- Primeira imagem do convite -->
@@ -336,6 +386,31 @@
     </div>
 
     <script>
+        // Função para o contador regressivo
+        function atualizarContador() {
+            const dataEvento = new Date('2026-03-29T00:00:00'); // Data do evento (29 de março de 2026)
+            const agora = new Date();
+            const diff = dataEvento - agora;
+
+            if (diff > 0) {
+                const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('dias').innerText = dias;
+                document.getElementById('horas').innerText = horas;
+                document.getElementById('minutos').innerText = minutos;
+                document.getElementById('segundos').innerText = segundos;
+            } else {
+                document.getElementById('contador').innerHTML = '<div style="text-align: center; color: #fff;">O evento já aconteceu! 🎉 Feliz aniversário, Maria Liz!</div>';
+            }
+        }
+
+        // Atualiza o contador a cada segundo
+        setInterval(atualizarContador, 1000);
+        atualizarContador();
+
         // Função para rolar suavemente para baixo
         function rolarParaBaixo() {
             window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
