@@ -172,6 +172,22 @@
             margin-top: 5px;
         }
 
+        /* Imagem do cabeçalho (substitui o h1) */
+        .header-img {
+            width: 100%; /* Ajusta à largura do container */
+            height: auto; /* Mantém proporção */
+            display: block;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: var(--sombra);
+            transition: all 0.3s ease;
+        }
+
+        .header-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        }
+
         /* Imagens do convite com animações */
         .convite-img {
             width: 100%;
@@ -319,6 +335,10 @@
             .numero {
                 font-size: 1.5rem;
             }
+            .header-img {
+                width: 100%;
+                height: auto;
+            }
         }
 
         /* Esconde o indicador em telas grandes */
@@ -332,7 +352,10 @@
 <body>
     <div class="container">
         <header>
-            <h1 style="text-align: center; margin-bottom: 20px; font-size: 1.5rem;">🎂 Convite Especial 🎂</h1>
+            <!-- Imagem do cabeçalho (substitui o h1) -->
+            <img src="https://drive.google.com/uc?id=1bT1J2RxvaQlWIlnMCJJpFylGRp20ACop" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="fallback">Imagem do cabeçalho não encontrada. Verifique o link.</div>
+            
             <!-- Contador regressivo moderno -->
             <div id="contador">
                 <div class="unidade">
@@ -413,31 +436,4 @@
 
         // Função para rolar suavemente para baixo
         function rolarParaBaixo() {
-            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-        }
-
-        // Função para esconder o indicador quando o botão "LOCAL DO EVENTO" estiver visível (usando Intersection Observer)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const indicator = document.getElementById('scrollIndicator');
-                if (entry.isIntersecting) {
-                    indicator.style.display = 'none'; // Esconde quando o botão entra na viewport
-                } else {
-                    indicator.style.display = 'flex'; // Mostra quando sai
-                }
-            });
-        }, {
-            threshold: 0.1 // 10% do elemento visível
-        });
-
-        // Observa o botão "LOCAL DO EVENTO"
-        const localButton = document.getElementById('localButton');
-        observer.observe(localButton);
-
-        // Função para ir ao local do evento
-        function irParaLocal() {
-            window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
-        }
-    </script>
-</body>
-</html>
+            window.scrollTo({ top: window.innerHeight, behavior:
