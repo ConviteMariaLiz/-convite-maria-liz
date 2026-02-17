@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Convite para o aniversário da Maria Liz. Confirme sua presença via WhatsApp!">
     <title>Convite para o Aniversário da Maria Liz</title>
+    <!-- Fonte externa para um visual mais profissional -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Variáveis CSS para facilitar manutenção */
         :root {
-            --cor-fundo: linear-gradient(135deg, #ff69b4, #ffb6c1);
+            --cor-fundo: linear-gradient(135deg, #ff69b4, #ffb6c1); /* Fundo rosa */
             --cor-botao: #25D366;
             --cor-botao-hover: #20c157;
             --sombra: 0 4px 15px rgba(0, 0, 0, 0.4);
             --fonte-principal: 'Roboto', sans-serif;
         }
 
+        /* Reset e estilos globais */
         * {
             margin: 0;
             padding: 0;
@@ -33,6 +36,7 @@
             overflow-x: hidden;
         }
 
+        /* Container principal */
         .container {
             position: relative;
             width: 100%;
@@ -48,15 +52,85 @@
             max-height: 90vh;
         }
 
-        /* AJUSTE DA IMAGEM DO TOPO PARA FICAR PRÓXIMA AO CONTADOR */
-        .img-header {
-            width: 70%; /* Tamanho visível e proporcional */
-            max-width: 250px;
-            height: auto;
-            margin-bottom: 10px; /* Reduzi para tirar a lacuna */
-            display: block;
+        /* Indicador de rolagem melhorado: maior, com texto e animação mais forte */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.7; /* Mais visível */
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            width: 120px; /* Maior */
+            height: 80px; /* Maior */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 10;
         }
 
+        .scroll-indicator:hover {
+            opacity: 1; /* Totalmente visível no hover */
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5); /* Brilho rosa */
+        }
+
+        .scroll-text {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #ff69b4; /* Rosa */
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .character-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+        }
+
+        .scroll-arrows {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .scroll-arrow {
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 15px solid; /* Maior */
+            border-top-color: linear-gradient(to bottom, #fff, #ffb6c1);
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Animações staggered mais fortes para as 3 setas */
+        .scroll-arrow:nth-child(1) {
+            animation: strongBounce 1.5s ease-in-out infinite;
+        }
+
+        .scroll-arrow:nth-child(2) {
+            animation: strongBounce 1.5s ease-in-out infinite 0.3s;
+        }
+
+        .scroll-arrow:nth-child(3) {
+            animation: strongBounce 1.5s ease-in-out infinite 0.6s;
+        }
+
+        @keyframes strongBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); } /* Movimento mais forte */
+            60% { transform: translateY(-4px); }
+        }
+
+        /* Contador regressivo moderno */
         #contador {
             display: flex;
             justify-content: center;
@@ -82,9 +156,14 @@
             transition: transform 0.3s ease;
         }
 
+        .unidade:hover {
+            transform: scale(1.05);
+        }
+
         .numero {
             font-size: 1.8rem;
             font-family: 'Courier New', monospace;
+            transition: all 0.5s ease;
         }
 
         .label {
@@ -93,6 +172,23 @@
             margin-top: 5px;
         }
 
+        /* Imagem do cabeçalho (substitui o h1) - Tamanho médio, bem próxima ao contador, sem fundo */
+        .header-img {
+            width: 60%; /* Tamanho médio */
+            max-width: 180px; /* Tamanho médio */
+            height: auto;
+            display: block;
+            margin: 0 auto 0px; /* Centralizada e bem próxima ao contador */
+            border-radius: 10px;
+            /* Sem box-shadow */
+            transition: all 0.3s ease;
+        }
+
+        .header-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Imagens do convite com animações */
         .convite-img {
             width: 100%;
             height: auto;
@@ -116,12 +212,35 @@
             75% { transform: rotate(0.5deg); }
         }
 
-        .botao-confirmar, .botao-local {
+        .convite-img:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Fallback para imagens que não carregam */
+        .fallback {
+            width: 100%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #fff;
+            font-weight: bold;
+            display: none;
+        }
+
+        /* Botão de confirmação com imagem como background e texto centralizado */
+        .botao-confirmar {
             display: block;
             width: 85%;
-            margin: 20px auto;
+            margin: 25px auto;
             padding: 18px;
             background-color: var(--cor-botao);
+            background-image: url('https://i.pinimg.com/originals/11/6b/b1/116bb116b2ce763a809594a81fc3d841.gif');
+            background-size: 50px 50px;
+            background-position: center left 10px;
+            background-repeat: no-repeat;
             color: white;
             text-align: center;
             text-decoration: none;
@@ -132,27 +251,112 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+        }
+
+        .botao-confirmar:hover {
+            background-color: var(--cor-botao-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .botao-confirmar:focus {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+
+        /* Botão do local do evento com imagem como background e texto centralizado */
+        .botao-local {
+            display: block;
+            width: 85%;
+            margin: 25px auto;
+            padding: 18px;
+            background-color: var(--cor-botao);
+            background-image: url('https://i.pinimg.com/originals/6e/60/8f/6e608f505913f335e9bc6c8511b4e36f.gif');
             background-size: 50px 50px;
             background-position: center left 10px;
             background-repeat: no-repeat;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            box-shadow: var(--sombra);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
-        .botao-confirmar { background-image: url('https://i.pinimg.com/originals/11/6b/b1/116bb116b2ce763a809594a81fc3d841.gif'); }
-        .botao-local { background-image: url('https://i.pinimg.com/originals/6e/60/8f/6e608f505913f335e9bc6c8511b4e36f.gif'); }
+        .botao-local:hover {
+            background-color: var(--cor-botao-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
 
+        .botao-local:focus {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+
+        /* Responsividade para telas menores (mobile-first) */
         @media (max-width: 600px) {
-            .container { max-width: 98%; padding: 10px; }
-            .unidade { min-width: 50px; padding: 8px; }
-            .numero { font-size: 1.5rem; }
+            .container {
+                max-width: 98%;
+                padding: 10px;
+                max-height: 95vh;
+            }
+            .scroll-indicator {
+                display: flex;
+            }
+            .convite-img {
+                width: 100%;
+                height: auto;
+                animation: fadeIn 1.5s ease-in, balanco 3s ease-in-out infinite;
+            }
+            .convite-img:hover {
+                transform: scale(1.05) rotate(2deg);
+            }
+            .botao-confirmar, .botao-local {
+                width: 95%;
+                font-size: 1.1rem;
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+            #contador {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            .unidade {
+                min-width: 50px;
+                padding: 8px;
+            }
+            .numero {
+                font-size: 1.5rem;
+            }
+            .header-img {
+                width: 70%; /* Maior em mobile */
+                max-width: 160px;
+            }
+        }
+
+        /* Esconde o indicador em telas grandes */
+        @media (min-width: 601px) {
+            .scroll-indicator {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header style="text-align: center; width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <header>
+            <!-- Imagem do cabeçalho (substitui o h1) - Tamanho médio, bem próxima ao contador -->
+            <img src="título.png" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="fallback">Imagem do cabeçalho não encontrada. Verifique o caminho.</div>
             
-            <img src="https://i.imgur.com/IcUE1sP.png" alt="Maria Liz 3 anos" class="img-header">
-
+            <!-- Contador regressivo moderno -->
             <div id="contador">
                 <div class="unidade">
                     <span id="dias" class="numero">0</span>
@@ -172,40 +376,68 @@
                 </div>
             </div>
         </header>
-
-        <main style="width: 100%;">
-            <img src="convite.png" alt="Convite" class="convite-img" onerror="this.style.display='none';">
-            <img src="convite2.png" alt="Convite" class="convite-img" onerror="this.style.display='none';">
+        <main>
+            <!-- Primeira imagem do convite -->
+            <img src="convite.png" alt="Parte superior do convite para o aniversário da Maria Liz" class="convite-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="fallback">Imagem não encontrada. Verifique o caminho do arquivo.</div>
             
-            <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao-confirmar">
+            <!-- Segunda imagem do convite -->
+            <img src="convite2.png" alt="Parte superior do convite para o aniversário da Maria Liz" class="convite-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="fallback">Imagem não encontrada. Verifique o caminho do arquivo.</div>
+            
+            <!-- Botão de confirmação com imagem como background -->
+            <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao-confirmar" aria-label="Clique para confirmar presença no WhatsApp">
                 ✅ CONFIRMAR PRESENÇA
             </a>
             
-            <button class="botao-local" id="localButton" onclick="irParaLocal()">
+            <!-- Novo botão para o local do evento com imagem como background -->
+            <button class="botao-local" id="localButton" onclick="irParaLocal()" aria-label="Clique para ver o local do evento">
                 📍 LOCAL DO EVENTO
             </button>
         </main>
     </div>
 
+    <!-- Indicador de rolagem melhorado -->
+    <div class="scroll-indicator" id="scrollIndicator" onclick="rolarParaBaixo()">
+        <div class="scroll-text">Role ↓</div>
+        <img src="https://i.pinimg.com/originals/52/05/ad/5205ad1953cc30b721bb42ee285eba7e.png" alt="Personagem fofo" class="character-image">
+        <div class="scroll-arrows">
+            <div class="scroll-arrow"></div>
+            <div class="scroll-arrow"></div>
+            <div class="scroll-arrow"></div>
+        </div>
+    </div>
+
     <script>
+        // Função para o contador regressivo
         function atualizarContador() {
-            const dataEvento = new Date('2026-03-29T00:00:00');
+            const dataEvento = new Date('2026-03-29T00:00:00'); // Data do evento (29 de março de 2026)
             const agora = new Date();
             const diff = dataEvento - agora;
 
+            console.log('Diferença:', diff); // Debug
+
             if (diff > 0) {
-                document.getElementById('dias').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-                document.getElementById('horas').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById('minutos').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById('segundos').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+                const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+                console.log('Dias:', dias, 'Horas:', horas, 'Minutos:', minutos, 'Segundos:', segundos); // Debug
+
+                document.getElementById('dias').innerText = dias;
+                document.getElementById('horas').innerText = horas;
+                document.getElementById('minutos').innerText = minutos;
+                document.getElementById('segundos').innerText = segundos;
+            } else {
+                document.getElementById('contador').innerHTML = '<div style="text-align: center; color: #fff;">O evento já aconteceu! 🎉 Feliz aniversário, Maria Liz!</div>';
             }
         }
+
+        // Atualiza o contador a cada segundo
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
-        function irParaLocal() {
-            window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
-        }
-    </script>
-</body>
-</html>
+        // Função para rolar suavemente para baixo
+        function rolarParaBaixo() {
+            window.scrollTo({ top: window.innerHeight
