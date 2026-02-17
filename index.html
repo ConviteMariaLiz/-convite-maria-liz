@@ -7,16 +7,14 @@
     <title>Convite para o Aniversário da Maria Liz</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Variáveis CSS para facilitar manutenção */
         :root {
-            --cor-fundo: linear-gradient(135deg, #ff69b4, #ffb6c1); /* Gradiente rosa feminino */
+            --cor-fundo: linear-gradient(135deg, #ff69b4, #ffb6c1);
             --cor-botao: #25D366;
             --cor-botao-hover: #20c157;
             --sombra: 0 4px 15px rgba(0, 0, 0, 0.4);
             --fonte-principal: 'Roboto', sans-serif;
         }
 
-        /* Reset e estilos globais */
         * {
             margin: 0;
             padding: 0;
@@ -35,7 +33,6 @@
             overflow-x: hidden;
         }
 
-        /* Container principal */
         .container {
             position: relative;
             width: 100%;
@@ -43,92 +40,24 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 15px; /* Reduzi o padding para tirar a lacuna */
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             box-shadow: var(--sombra);
             overflow-y: auto;
-            max-height: 90vh;
+            max-height: 95vh;
         }
 
-        /* Estilo da nova imagem do cabeçalho */
+        /* AJUSTE DA IMAGEM DO TOPO - SEM LACUNA */
         .header-img {
-            max-width: 100%;
+            width: 80%; /* Tamanho bem visível */
+            max-width: 300px;
             height: auto;
             display: block;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 10px auto; /* Margem pequena embaixo para encostar no contador */
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
         }
 
-        /* Indicador de rolagem melhorado */
-        .scroll-indicator {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            opacity: 0.7;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            width: 120px;
-            height: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            z-index: 10;
-        }
-
-        .scroll-indicator:hover {
-            opacity: 1;
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
-        }
-
-        .scroll-text {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: #ff69b4;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        .character-image {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            margin-bottom: 5px;
-        }
-
-        .scroll-arrows {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .scroll-arrow {
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 15px solid;
-            border-top-color: #fff;
-            border-radius: 3px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-        }
-
-        .scroll-arrow:nth-child(1) { animation: strongBounce 1.5s ease-in-out infinite; }
-        .scroll-arrow:nth-child(2) { animation: strongBounce 1.5s ease-in-out infinite 0.3s; }
-        .scroll-arrow:nth-child(3) { animation: strongBounce 1.5s ease-in-out infinite 0.6s; }
-
-        @keyframes strongBounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-8px); }
-            60% { transform: translateY(-4px); }
-        }
-
-        /* Contador regressivo */
         #contador {
             display: flex;
             justify-content: center;
@@ -138,6 +67,7 @@
             background: rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             box-shadow: var(--sombra);
+            width: 100%;
         }
 
         .unidade {
@@ -147,22 +77,20 @@
             background: linear-gradient(135deg, #fff, #f0f0f0);
             border-radius: 10px;
             padding: 10px;
+            flex: 1; /* Faz as caixas crescerem por igual */
             min-width: 60px;
             box-shadow: var(--sombra);
             color: #333;
             font-weight: bold;
-            transition: transform 0.3s ease;
         }
 
-        .unidade:hover { transform: scale(1.05); }
-
         .numero {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-family: 'Courier New', monospace;
         }
 
         .label {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             margin-top: 5px;
         }
@@ -174,7 +102,7 @@
             margin-bottom: 15px;
             border-radius: 10px;
             box-shadow: var(--sombra);
-            animation: fadeIn 1.5s ease-in, balanco 3s ease-in-out infinite;
+            animation: fadeIn 1.5s ease-in;
         }
 
         @keyframes fadeIn {
@@ -182,27 +110,10 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes balanco {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(1deg); }
-            50% { transform: rotate(-1deg); }
-            75% { transform: rotate(0.5deg); }
-        }
-
-        .fallback {
-            width: 100%;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 15px;
-            display: none;
-        }
-
         .botao-confirmar, .botao-local {
             display: block;
-            width: 85%;
-            margin: 25px auto;
+            width: 90%;
+            margin: 15px auto;
             padding: 18px;
             background-color: var(--cor-botao);
             color: white;
@@ -210,44 +121,37 @@
             text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             box-shadow: var(--sombra);
-            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
         }
 
         .botao-confirmar {
             background-image: url('https://i.pinimg.com/originals/11/6b/b1/116bb116b2ce763a809594a81fc3d841.gif');
-            background-size: 50px 50px;
-            background-position: center left 10px;
+            background-size: 40px;
+            background-position: left 15px center;
             background-repeat: no-repeat;
         }
 
         .botao-local {
             background-image: url('https://i.pinimg.com/originals/6e/60/8f/6e608f505913f335e9bc6c8511b4e36f.gif');
-            background-size: 50px 50px;
-            background-position: center left 10px;
+            background-size: 40px;
+            background-position: left 15px center;
             background-repeat: no-repeat;
         }
 
         @media (max-width: 600px) {
-            .container { max-width: 98%; padding: 10px; max-height: 95vh; }
-            .botao-confirmar, .botao-local { width: 95%; font-size: 1.1rem; padding: 16px; }
-            #contador { flex-wrap: wrap; gap: 5px; }
-            .unidade { min-width: 50px; padding: 8px; }
-            .numero { font-size: 1.5rem; }
-        }
-
-        @media (min-width: 601px) {
-            .scroll-indicator { display: none; }
+            .container { max-width: 95%; }
+            .numero { font-size: 1.4rem; }
+            .unidade { min-width: 45px; padding: 8px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <img src="https://i.imgur.com/IcUE1sP.png" alt="Convite Especial" class="header-img">
+        <header style="width: 100%; text-align: center;">
+            <img src="https://i.imgur.com/IcUE1sP.png" alt="Maria Liz 3 anos" class="header-img">
             
             <div id="contador">
                 <div class="unidade">
@@ -268,31 +172,19 @@
                 </div>
             </div>
         </header>
-        <main>
-            <img src="convite.png" alt="Parte superior do convite" class="convite-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="fallback">Imagem não encontrada.</div>
-            
-            <img src="convite2.png" alt="Parte inferior do convite" class="convite-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="fallback">Imagem não encontrada.</div>
+
+        <main style="width: 100%;">
+            <img src="convite.png" alt="Convite Maria Liz" class="convite-img" onerror="this.style.display='none';">
+            <img src="convite2.png" alt="Convite Maria Liz Parte 2" class="convite-img" onerror="this.style.display='none';">
             
             <a href="https://wa.me/5585921508496?text=Oi!%20Confirmo%20presença%20no%20aniversário%20da%20Maria%20Liz!" class="botao-confirmar">
-                ✅ CONFIRMAR PRESENÇA
+                CONFIRMAR PRESENÇA
             </a>
             
             <button class="botao-local" id="localButton" onclick="irParaLocal()">
-                📍 LOCAL DO EVENTO
+                LOCAL DO EVENTO
             </button>
         </main>
-    </div>
-
-    <div class="scroll-indicator" id="scrollIndicator" onclick="rolarParaBaixo()">
-        <div class="scroll-text">Role ↓</div>
-        <img src="https://i.pinimg.com/originals/52/05/ad/5205ad1953cc30b721bb42ee285eba7e.png" alt="Personagem fofo" class="character-image">
-        <div class="scroll-arrows">
-            <div class="scroll-arrow"></div>
-            <div class="scroll-arrow"></div>
-            <div class="scroll-arrow"></div>
-        </div>
     </div>
 
     <script>
@@ -302,43 +194,6 @@
             const diff = dataEvento - agora;
 
             if (diff > 0) {
-                const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const segundos = Math.floor((diff % (1000 * 60)) / 1000);
-
-                document.getElementById('dias').innerText = dias;
-                document.getElementById('horas').innerText = horas;
-                document.getElementById('minutos').innerText = minutos;
-                document.getElementById('segundos').innerText = segundos;
-            } else {
-                document.getElementById('contador').innerHTML = '<div style="text-align: center; color: #fff;">O evento já aconteceu! 🎉 Feliz aniversário, Maria Liz!</div>';
-            }
-        }
-
-        setInterval(atualizarContador, 1000);
-        atualizarContador();
-
-        function rolarParaBaixo() {
-            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const indicator = document.getElementById('scrollIndicator');
-                if (entry.isIntersecting) {
-                    indicator.style.display = 'none';
-                } else {
-                    if (window.innerWidth <= 600) indicator.style.display = 'flex';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        observer.observe(document.getElementById('localButton'));
-
-        function irParaLocal() {
-            window.open('https://share.google/O8SSLfRoFTqmfCAVP', '_blank');
-        }
-    </script>
-</body>
-</html>
+                document.getElementById('dias').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById('horas').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('minutos').innerText = Math.floor((diff % (1000 * 60 *
