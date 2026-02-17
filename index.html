@@ -172,13 +172,13 @@
             margin-top: 5px;
         }
 
-        /* Imagem do cabeçalho (substitui o h1) - Como título, próxima ao contador */
+        /* Imagem do cabeçalho (substitui o h1) - Maior e próxima ao contador */
         .header-img {
-            width: 70%; /* 70% da largura do container */
-            max-width: 200px; /* Limite para manter proporcional */
+            width: 80%; /* Maior */
+            max-width: 250px; /* Maior */
             height: auto;
             display: block;
-            margin: 0 auto 5px; /* Centralizada e próxima ao contador */
+            margin: 0 auto 0px; /* Centralizada e colada ao contador */
             border-radius: 10px;
             /* Sem box-shadow */
             transition: all 0.3s ease;
@@ -336,8 +336,8 @@
                 font-size: 1.5rem;
             }
             .header-img {
-                width: 80%; /* Maior em mobile */
-                max-width: 180px;
+                width: 90%; /* Ainda maior em mobile */
+                max-width: 220px;
             }
         }
 
@@ -352,7 +352,7 @@
 <body>
     <div class="container">
         <header>
-            <!-- Imagem do cabeçalho (substitui o h1) - Como título, próxima ao contador -->
+            <!-- Imagem do cabeçalho (substitui o h1) - Maior e próxima ao contador -->
             <img src="tela.png" alt="Convite Especial para o Aniversário da Maria Liz" class="header-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <div class="fallback">Imagem do cabeçalho não encontrada. Verifique o caminho.</div>
             
@@ -445,4 +445,9 @@
                 const indicator = document.getElementById('scrollIndicator');
                 if (entry.isIntersecting) {
                     indicator.style.display = 'none'; // Esconde quando o botão entra na viewport
-               
+                } else {
+                    indicator.style.display = 'flex'; // Mostra quando sai
+                }
+            });
+        }, {
+            threshold: 0.1 // 10
